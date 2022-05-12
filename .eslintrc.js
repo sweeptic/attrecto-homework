@@ -1,3 +1,12 @@
+const srcFolderPaths = ["__tests__", "components", "stylesheets"].reduce(
+  (paths, path) => [...paths, path, `${path}/**`],
+  []
+);
+
+
+
+const importExtensionExceptions = ["svg", "json"];
+
 module.exports = {
   env: {
     browser: true,
@@ -17,5 +26,8 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react"],
-  rules: { "no-console": 2 },
+  rules: {
+    // ...getImportPluginRules(srcFolderPaths, importExtensionExceptions),
+    "no-restricted-imports": ["warn", { patterns: ["../*"] }], // Use absolute paths
+  },
 };

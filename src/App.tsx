@@ -1,7 +1,14 @@
-import "./App.css";
+import "stylesheets/main.scss";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <section>
+        <input type="text" />
+      </section>
+      <article className="result">searcResult</article>
+    </>
+  );
 };
 
 export default App;
