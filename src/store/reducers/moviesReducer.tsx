@@ -1,4 +1,4 @@
-const initState: never[] = [];
+const initState: undefined[] = [];
 
 export const moviesReducer = (movies = initState, action: { type: unknown; }) => {
   switch (action.type) {
