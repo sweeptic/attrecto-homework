@@ -5,12 +5,15 @@ import { apiMiddleware } from "store/middleware/core/api";
 import { normalizeMiddleware } from "store/middleware/core/normalize";
 import { loggerMiddleware } from "store/middleware/core/logger";
 import { actionSplitterMiddleware } from "store/middleware/core/actionSplitter";
+import { genresMiddleware } from "store/middleware/feature/genre";
+import { genresReducer } from "store/reducers/genresReducer";
 
 const reducer = {
   movies: moviesReducer,
+  genres: genresReducer,
 };
 
-const featureMiddleware = [moviesMiddleware];
+const featureMiddleware = [genresMiddleware, moviesMiddleware];
 
 const coreMiddleware = [actionSplitterMiddleware, apiMiddleware, normalizeMiddleware, loggerMiddleware];
 

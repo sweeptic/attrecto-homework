@@ -1,4 +1,5 @@
-import { setMovies } from "store/actions/movie";
+import { GENRES, setGenres } from "store/actions/genre";
+import { MOVIES, setMovies } from "store/actions/movie";
 
 export const normalizeMiddleware =
   ({ dispatch }: any) =>
@@ -10,8 +11,12 @@ export const normalizeMiddleware =
         acc[item[action.meta.normalizeKey]] = item;
         return acc;
       }, {});
-
-      next(setMovies({ movies, normalizeKey: null }));
+      if (action.type.includes(MOVIES)) {
+        next(setMovies({ movies, normalizeKey: null }));
+      }
+      if (action.type.includes(GENRES)) {
+        next(setGenres({ movies, normalizeKey: null }));
+      }
     } else {
       next(action);
     }
