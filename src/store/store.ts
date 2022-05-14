@@ -4,6 +4,7 @@ import { moviesMiddleware } from "store/middleware/feature/movie";
 import { apiMiddleware } from "store/middleware/core/api";
 import { normalizeMiddleware } from "store/middleware/core/normalize";
 import { loggerMiddleware } from "store/middleware/core/logger";
+import { actionSplitterMiddleware } from "store/middleware/core/actionSplitter";
 
 const reducer = {
   movies: moviesReducer,
@@ -11,7 +12,7 @@ const reducer = {
 
 const featureMiddleware = [moviesMiddleware];
 
-const coreMiddleware = [apiMiddleware, normalizeMiddleware, loggerMiddleware];
+const coreMiddleware = [actionSplitterMiddleware, apiMiddleware, normalizeMiddleware, loggerMiddleware];
 
 const middleware = [...featureMiddleware, ...coreMiddleware];
 

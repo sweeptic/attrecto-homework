@@ -13,6 +13,6 @@ export const normalizeMiddleware =
 
       next(setMovies({ movies, normalizeKey: null }));
     } else {
-        next(action)
+      next(action);
     }
   };
