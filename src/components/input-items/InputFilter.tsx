@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cleanMovies, fetchMovies } from "store/actions/movie";
+import { getMovesRawData } from "store/reducers/moviesReducer";
 
 interface IInputFilter {
   waitForKey: number;
@@ -11,7 +13,8 @@ const Input = ({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter) => {
   const [enteredFilter, setEnteredFilter] = useState("");
   const [isCleaned, setIsCleaned] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const movies = useSelector((state) => getMovesRawData(state));
 
   useEffect(() => {
     const inputValue = inputRef.current?.value;
@@ -19,8 +22,7 @@ const Input = ({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter) => {
       setIsCleaned(false);
       const timer = setTimeout(() => {
         if (enteredFilter === inputValue) {
-          console.log("send action with filter:", enteredFilter);
-          // dispatch(fetchMovies(enteredFilter));
+          dispatch(fetchMovies({ query: enteredFilter }));
         }
       }, waitForMsec);
       return () => {
@@ -33,8 +35,7 @@ const Input = ({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter) => {
 
   useEffect(() => {
     if (isCleaned && enteredFilter && clearWhenDelete) {
-      console.log("send action to clean");
-      // dispatch(cleanMovies(""));
+      dispatch(cleanMovies());
     }
   }, [isCleaned]);
 
@@ -42,14 +43,11 @@ const Input = ({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter) => {
     inputRef.current?.focus();
   }, [inputRef]);
 
-  return (
-    <input
-      ref={inputRef}
-      type="text"
-      value={enteredFilter}
-      onChange={(event) => setEnteredFilter(event.target.value)}
-    />
-  );
+  useEffect(() => {
+    console.log("movies", movies);
+  }, [movies]);
+
+  return <input ref={inputRef} type="text" value={enteredFilter} onChange={(event) => setEnteredFilter(event.target.value)} />;
 };
 
 export default Input;
