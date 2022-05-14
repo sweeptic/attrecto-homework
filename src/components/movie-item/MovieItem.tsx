@@ -6,8 +6,8 @@ interface IMovieItem {
 
 const MovieItem = ({ item }: IMovieItem) => {
   return (
-    <div>
-          <span key={item.id}>{item.title }</span>
+    <div className="card">
+      <span key={item.id}>{item.title}</span>
     </div>
   );
 };

@@ -15,7 +15,7 @@ const MovieList = () => {
     }
   }
 
-  return <div>{moviesList}</div>;
+  return <>{moviesList}</>;
 };
 
 export default MovieList;
