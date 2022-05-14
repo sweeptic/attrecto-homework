@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react";
 interface IInputFilter {
   waitForKey: number;
   waitForMsec: number;
+  clearWhenDelete: boolean;
 }
 
-const Input = ({ waitForKey, waitForMsec }: IInputFilter) => {
+const Input = ({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter) => {
   const [enteredFilter, setEnteredFilter] = useState("");
   const [isCleaned, setIsCleaned] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -31,7 +32,7 @@ const Input = ({ waitForKey, waitForMsec }: IInputFilter) => {
   }, [enteredFilter]);
 
   useEffect(() => {
-    if (isCleaned && enteredFilter) {
+    if (isCleaned && enteredFilter && clearWhenDelete) {
       console.log("send action to clean");
       // dispatch(cleanMovies(""));
     }
