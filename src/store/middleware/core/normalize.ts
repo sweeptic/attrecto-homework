@@ -6,18 +6,24 @@ export const normalizeMiddleware =
   (next: any) =>
   (action: any) => {
     if (action.type.includes("SET") && action.meta.normalizeKey) {
-      // transform the data structure
-      const movies = action.payload.reduce((acc: any, item: any) => {
-        acc[item[action.meta.normalizeKey]] = item;
-        return acc;
-      }, {});
+      actionRouter(getNormalizeData());
+    } else {
+      next(action);
+    }
+
+    function actionRouter(movies: any) {
       if (action.type.includes(MOVIES)) {
         next(setMovies({ movies, normalizeKey: null }));
       }
       if (action.type.includes(GENRES)) {
         next(setGenres({ movies, normalizeKey: null }));
       }
-    } else {
-      next(action);
+    }
+
+    function getNormalizeData() {
+      return action.payload.reduce((acc: any, item: any) => {
+        acc[item[action.meta.normalizeKey]] = item;
+        return acc;
+      }, {});
     }
   };

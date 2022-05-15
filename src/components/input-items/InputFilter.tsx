@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchGenres } from "store/actions/genre";
 import { cleanMovies, fetchMovies } from "store/actions/movie";
-import { getMovesRawData } from "store/reducers/moviesReducer";
 
 interface IInputFilter {
   waitForKey: number;

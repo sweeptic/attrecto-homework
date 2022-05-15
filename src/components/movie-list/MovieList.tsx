@@ -1,5 +1,4 @@
 import MovieItem from "components/movie-item/MovieItem";
-import React from "react";
 import { useSelector } from "react-redux";
 import { getMovesRawData } from "store/reducers/moviesReducer";
 
