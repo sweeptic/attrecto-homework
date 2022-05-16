@@ -1,6 +1,6 @@
 import { SET_DETAIL } from "store/actions/detail";
 
-const initState: undefined[] = [];
+const initState = {};
 
 export const detailReducer = (detail = initState, action: any) => {
   switch (action.type) {
