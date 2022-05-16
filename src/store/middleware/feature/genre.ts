@@ -6,7 +6,7 @@ const API_KEY = "1c5abaaeaa13c66b570ad3042a0d51f4"; // TODO
 const LANG = "en-US";
 
 export const genresMiddleware = () => (next: any) => (action: any) => {
-  // next(action);
+//   next(action);
 
   const GENRE_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=${LANG}`;
 

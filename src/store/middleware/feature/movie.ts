@@ -36,6 +36,6 @@ export const moviesMiddleware = () => (next: any) => (action: any) => {
     case `${MOVIES} ${API_ERROR}`:
       break;
 
-    default:
+    default: 
   }
 };

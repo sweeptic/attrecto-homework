@@ -8,16 +8,19 @@ import { loggerMiddleware } from "store/middleware/core/logger";
 import { actionSplitterMiddleware } from "store/middleware/core/actionSplitter";
 import { genresMiddleware } from "store/middleware/feature/genre";
 import { uiReducer } from "./reducers/uiReducer";
+import { detailReducer } from "./reducers/detailReducer";
+import { detailMiddleware } from "./middleware/feature/detail";
 
 const reducer = {
   ui: uiReducer,
   movies: moviesReducer,
+  detail: detailReducer,
   genres: genresReducer,
 };
 
-const featureMiddleware = [genresMiddleware, moviesMiddleware];
+const featureMiddleware = [genresMiddleware, detailMiddleware, moviesMiddleware];
 
-const coreMiddleware = [actionSplitterMiddleware, apiMiddleware, normalizeMiddleware, loggerMiddleware];
+const coreMiddleware = [actionSplitterMiddleware, apiMiddleware, normalizeMiddleware/*, loggerMiddleware*/];
 
 const middleware = [...featureMiddleware, ...coreMiddleware];
 
