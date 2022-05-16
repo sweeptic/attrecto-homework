@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchGenres } from "store/actions/genre";
 import { cleanMovies, fetchMovies } from "store/actions/movie";
 
 interface IInputFilter {
@@ -14,10 +13,6 @@ const Input = ({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter) => {
   const [isCleaned, setIsCleaned] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchGenres({ query: "" }));
-  }, []);
 
   useEffect(() => {
     const inputValue = inputRef.current?.value;
