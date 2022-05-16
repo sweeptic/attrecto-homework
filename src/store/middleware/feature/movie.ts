@@ -1,5 +1,6 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { CLEAN_MOVIES, FETCH_MOVIES, MOVIES, setMovies } from "store/actions/movie";
+import { setLoader } from "store/actions/ui";
 
 const API_KEY = "1c5abaaeaa13c66b570ad3042a0d51f4";
 const LANG = "en-US";
@@ -19,6 +20,8 @@ export const moviesMiddleware = () => (next: any) => (action: any) => {
           url: MOVIES_URL,
           feature: MOVIES,
         }),
+
+        setLoader({ state: true, feature: MOVIES }),
       ]);
       break;
 
@@ -27,7 +30,7 @@ export const moviesMiddleware = () => (next: any) => (action: any) => {
       break;
 
     case `${MOVIES} ${API_SUCCESS}`:
-      next(setMovies({ movies: action.payload.results, normalizeKey: "id" }));
+      next([setMovies({ movies: action.payload.results, normalizeKey: "id" }), setLoader({ state: false, feature: MOVIES })]);
       break;
 
     case `${MOVIES} ${API_ERROR}`:

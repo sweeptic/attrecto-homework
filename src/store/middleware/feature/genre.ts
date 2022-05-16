@@ -1,5 +1,6 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { FETCH_GENRES, GENRES, setGenres } from "store/actions/genre";
+import { setLoader } from "store/actions/ui";
 
 const API_KEY = "1c5abaaeaa13c66b570ad3042a0d51f4"; // TODO
 const LANG = "en-US";
@@ -18,11 +19,12 @@ export const genresMiddleware = () => (next: any) => (action: any) => {
           url: GENRE_URL,
           feature: GENRES,
         }),
+        setLoader({ state: true, feature: GENRES }),
       ]);
       break;
 
     case `${GENRES} ${API_SUCCESS}`:
-      next(setGenres({ movies: action.payload.genres, normalizeKey: "id" }));
+      next([setGenres({ movies: action.payload.genres, normalizeKey: "id" }), setLoader({ state: false, feature: GENRES })]);
       break;
 
     case `${GENRES} ${API_ERROR}`:
