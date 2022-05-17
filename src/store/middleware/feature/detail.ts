@@ -2,7 +2,7 @@ import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { CLEAN_DETAIL, DETAIL, FETCH_DETAIL, setDetail } from "store/actions/detail";
 import { setLoader } from "store/actions/ui";
 
-const API_KEY = "1c5abaaeaa13c66b570ad3042a0d51f4";
+const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const LANG = "en-US";
 
 export const detailMiddleware = () => (next: any) => (action: any) => {
