@@ -1,29 +1,39 @@
 import MovieItem from "components/movie-item/MovieItem";
+import { forwardRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "store/actions/detail";
 import { getMovesRawData } from "store/reducers/moviesReducer";
 
-const MovieList = () => {
+const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
   const moviesData = useSelector((state) => getMovesRawData(state));
   const dispatch = useDispatch();
-
-  const moviesList: any = [];
+  const inputLength = inputRef?.current?.value.length;
 
   function onMovieSelectHandler(item: number) {
     dispatch(fetchDetail({ query: item.toString() }));
   }
 
-  function MovieFactory() {
-    for (const key in moviesData) {
-      if (Object.prototype.hasOwnProperty.call(moviesData, key)) {
-        const element = moviesData[key];
-        moviesList.push(<MovieItem key={key} item={element} onDetails={onMovieSelectHandler} />);
-      }
-    }
+  function getMoviesList() {
+    return Object.keys(moviesData).map((item) => {
+      const element = moviesData[item];
+      return <MovieItem key={item} item={element} onDetails={onMovieSelectHandler} />;
+    });
   }
-  MovieFactory();
 
-  return <>{moviesList}</>;
-};
+  function getMovieListContent() {
+    let content;
+    if (inputLength < waitForKey) {
+      content = `please enter at least ${waitForKey} letters.`;
+    } else {
+      content = moviesList.length > 0 ? moviesList : "There are no search results.";
+    }
+    return content;
+  }
+
+  const moviesList = getMoviesList();
+  const movieListContent = getMovieListContent();
+
+  return <>{movieListContent}</>;
+});
 
 export default MovieList;

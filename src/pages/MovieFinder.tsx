@@ -70,7 +70,6 @@ const MovieFinder = () => {
 
   return (
     <section>
-      {/* {contents} */}
       <Spinner isLoading={spinner.loading} />
       {detailIsShown && <ModalItem onClose={clearDetails} content={<MovieItem item={detail} />} />}
       {messageIsShown && <ModalItem onClose={clearMessage} content={<ErrorItem message={errorMessage} />} />}
@@ -78,7 +77,7 @@ const MovieFinder = () => {
         <InputFilter {...inputFilterSetup} ref={inputRef} />
       </div>
       <article className="result">
-        <MovieList />
+        <MovieList waitForKey={inputFilterSetup.waitForKey} ref={inputRef} />
       </article>
     </section>
   );
