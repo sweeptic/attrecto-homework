@@ -12,6 +12,7 @@ const Input = forwardRef(({ waitForKey, waitForMsec, clearWhenDelete }: IInputFi
   // React.forwardRef((props, ref)
   const [enteredFilter, setEnteredFilter] = useState("");
   const [isCleaned, setIsCleaned] = useState(true);
+  const [page, setPage] = useState(1);
 
   const dispatch = useDispatch();
 
@@ -21,7 +22,7 @@ const Input = forwardRef(({ waitForKey, waitForMsec, clearWhenDelete }: IInputFi
       setIsCleaned(false);
       const timer = setTimeout(() => {
         if (enteredFilter === inputValue) {
-          dispatch(fetchMovies({ query: enteredFilter }));
+          dispatch(fetchMovies({ query: enteredFilter, page: page }));
         }
       }, waitForMsec);
       return () => {

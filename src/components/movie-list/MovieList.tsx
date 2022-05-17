@@ -1,5 +1,5 @@
 import MovieItem from "components/movie-item/MovieItem";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "store/actions/detail";
 import { getMovesRawData } from "store/reducers/moviesReducer";
