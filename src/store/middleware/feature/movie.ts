@@ -1,4 +1,6 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
+import { setNotification } from "store/actions/message";
+
 import { CLEAN_MOVIES, FETCH_MOVIES, MOVIES, setMovies } from "store/actions/movie";
 import { setLoader } from "store/actions/ui";
 
@@ -34,8 +36,11 @@ export const moviesMiddleware = () => (next: any) => (action: any) => {
       break;
 
     case `${MOVIES} ${API_ERROR}`:
+      //   console.log("action.payload", action.payload);
+
+      next([setNotification({ message: action.payload, feature: MOVIES }), setLoader({ state: false, feature: MOVIES })]);
       break;
 
-    default: 
+    default:
   }
 };

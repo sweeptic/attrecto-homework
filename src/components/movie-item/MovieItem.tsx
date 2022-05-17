@@ -1,11 +1,13 @@
 interface IMovieItem {
   item: any;
-  onDetails: (arg0: number) => void;
+  onDetails?: (arg0: number) => void;
 }
 
 const MovieItem = ({ item, onDetails }: IMovieItem) => {
   function onDetailHandler() {
-    onDetails(item.id);
+    if (onDetails) {
+      onDetails(item.id);
+    }
   }
 
   return (

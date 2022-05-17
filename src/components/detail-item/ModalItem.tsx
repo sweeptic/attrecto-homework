@@ -1,15 +1,15 @@
 import Modal from "components/overlays/Modal";
 
-interface IDetail {
+interface IModalItem {
   onClose: () => void;
 }
 
-const Detail = (props: any) => {
+const ModalItem = (props: any) => {
   return (
     <Modal onClose={props.onClose}>
-      <div>Detail</div>
+      <div>{props.content}</div>
     </Modal>
   );
 };
 
-export default Detail;
+export default ModalItem;

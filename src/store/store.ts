@@ -11,16 +11,20 @@ import { uiReducer } from "./reducers/uiReducer";
 import { detailReducer } from "./reducers/detailReducer";
 import { detailMiddleware } from "./middleware/feature/detail";
 
+import { notificationMiddleware } from "./middleware/core/notification";
+import { notificationReducer } from "./reducers/notificationReducer";
+
 const reducer = {
   ui: uiReducer,
   movies: moviesReducer,
   detail: detailReducer,
   genres: genresReducer,
+  notifications: notificationReducer,
 };
 
 const featureMiddleware = [genresMiddleware, detailMiddleware, moviesMiddleware];
 
-const coreMiddleware = [actionSplitterMiddleware, apiMiddleware, normalizeMiddleware/*, loggerMiddleware*/];
+const coreMiddleware = [actionSplitterMiddleware, apiMiddleware, normalizeMiddleware, notificationMiddleware /*, loggerMiddleware*/];
 
 const middleware = [...featureMiddleware, ...coreMiddleware];
 

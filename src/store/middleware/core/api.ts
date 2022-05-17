@@ -23,7 +23,6 @@ export const apiMiddleware =
     if (action.type.includes(API_REQUEST)) {
       const { body, url, method, feature } = action.meta;
       // feature - integrity key
-        
 
       // mapping an action to a different
       // action while maintaining integrity using the feature name.
@@ -31,10 +30,18 @@ export const apiMiddleware =
       fetch(url, { body, method })
         .then((response) => response.json())
         .then((response) => {
-          dispatch(apiSuccess({ response, feature }));
+          if (response.success === false) {
+            const error = {
+              response: response.status_code,
+              error: response.status_message,
+              feature: feature,
+            };
+            dispatch(apiError({ error, feature }));
+          } else {
+            dispatch(apiSuccess({ response, feature }));
+          }
         })
         .catch((error) => {
-          console.log("error", error);
           dispatch(apiError({ error, feature }));
         });
 
