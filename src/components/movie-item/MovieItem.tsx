@@ -13,7 +13,16 @@ const MovieItem = ({ item, onDetails, onlyDetail }: IMovieItem) => {
 
   return (
     <div className="card" onClick={onDetailHandler}>
-      <span key={item.id}>{item.title}</span>
+      <div>
+        <h4>{item.title}</h4>
+      </div>
+      <div>
+        <span>{item.overview}</span>
+      </div>
+      <div>
+        <h5>{item.itemCategories}</h5>
+      </div>
+      <div>{/* <span>categories: {item.categories}</span> */}</div>
     </div>
   );
 };

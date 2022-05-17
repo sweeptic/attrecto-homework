@@ -2,10 +2,11 @@ import MovieItem from "components/movie-item/MovieItem";
 import { forwardRef, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "store/actions/detail";
-import { getMovesRawData } from "store/reducers/moviesReducer";
+import { selectMovies } from "store/selectors/feature_selectors";
 
 const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
-  const moviesData = useSelector((state) => getMovesRawData(state));
+  const moviesData = useSelector((state) => selectMovies(state));
+
   const dispatch = useDispatch();
   const inputLength = inputRef?.current?.value.length;
 
@@ -16,7 +17,7 @@ const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
   function getMoviesList() {
     return Object.keys(moviesData).map((item) => {
       const element = moviesData[item];
-      return <MovieItem key={item} item={element} onDetails={onMovieSelectHandler} />;
+      return <MovieItem key={element.id} item={element} onDetails={onMovieSelectHandler} />;
     });
   }
 

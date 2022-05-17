@@ -13,7 +13,7 @@ export const moviesReducer = (movies = initState, action: any) => {
 
 const getMovies = (state: any) => state.movies;
 
-export const getMovesRawData = (state: any) => {
+export const getMoviesRawData = (state: any) => {
   const movies = getMovies(state);
   return movies;
 };
