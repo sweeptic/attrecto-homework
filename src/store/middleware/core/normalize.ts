@@ -6,8 +6,6 @@ export const normalizeMiddleware =
   (next: any) =>
   (action: any) => {
     if (action.type.includes("SET") && action.meta.normalizeKey) {
-      console.log("normalize", action);
-
       actionRouter(getNormalizeData());
     } else {
       next(action);

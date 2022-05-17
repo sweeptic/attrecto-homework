@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cleanMovies, fetchMovies } from "store/actions/movie";
 
@@ -8,14 +8,15 @@ interface IInputFilter {
   clearWhenDelete: boolean;
 }
 
-const Input = ({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter) => {
+const Input = forwardRef(({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter, inputRef: any) => {
+  // React.forwardRef((props, ref)
   const [enteredFilter, setEnteredFilter] = useState("");
   const [isCleaned, setIsCleaned] = useState(true);
-  const inputRef = useRef<HTMLInputElement>(null);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const inputValue = inputRef.current?.value;
+    const inputValue = inputRef?.current.value;
     if (enteredFilter.length >= waitForKey) {
       setIsCleaned(false);
       const timer = setTimeout(() => {
@@ -42,6 +43,6 @@ const Input = ({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter) => {
   }, [inputRef]);
 
   return <input ref={inputRef} type="text" value={enteredFilter} onChange={(event) => setEnteredFilter(event.target.value)} />;
-};
+});
 
 export default Input;

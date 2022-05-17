@@ -1,5 +1,5 @@
-const ErrorItem = () => {
-  return <div>Something went wrong. Please try again later.</div>;
+const ErrorItem = ({ message }: any) => {
+  return <div>{message}</div>;
 };
 
 export default ErrorItem;
