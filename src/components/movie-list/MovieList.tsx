@@ -17,6 +17,8 @@ const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
   function getMoviesList() {
     return Object.keys(moviesData).map((item) => {
       const element = moviesData[item];
+      console.log("render movie list");
+
       return <MovieItem key={element.id} item={element} onDetails={onMovieSelectHandler} />;
     });
   }

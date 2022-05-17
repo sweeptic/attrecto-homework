@@ -22,10 +22,12 @@ export const selectMovies: any = createSelector([getMovies, getGenres], (movies:
 export function getMovieGenres(movieItem: any, genres: any) {
   const catRes: any[] = [];
 
-  movieItem.forEach((element: any) => {
-    const genre = genres[element]?.name;
-    genre && catRes.push(genre);
-  });
+  if (movieItem) {
+    movieItem.forEach((element: any) => {
+      const genre = genres[element]?.name;
+      genre && catRes.push(genre);
+    });
+  }
 
   return catRes.join(", ");
 }

@@ -14,7 +14,9 @@ const MovieItem = ({ item, onDetails, onlyDetail }: IMovieItem) => {
   return (
     <div className="card" onClick={onDetailHandler}>
       <div>
-        <h4>{item.title}</h4>
+        <h4>
+          {item.title}, {item.id}
+        </h4>
       </div>
       <div>
         <span>{item.overview}</span>
@@ -22,7 +24,6 @@ const MovieItem = ({ item, onDetails, onlyDetail }: IMovieItem) => {
       <div>
         <h5>{item.itemCategories}</h5>
       </div>
-      <div>{/* <span>categories: {item.categories}</span> */}</div>
     </div>
   );
 };

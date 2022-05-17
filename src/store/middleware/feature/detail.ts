@@ -1,5 +1,6 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { CLEAN_DETAIL, DETAIL, FETCH_DETAIL, setDetail } from "store/actions/detail";
+import { setNotification } from "store/actions/message";
 import { setLoader } from "store/actions/ui";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
@@ -12,7 +13,7 @@ export const detailMiddleware = () => (next: any) => (action: any) => {
   const QUERY_URL = `https://api.themoviedb.org/3/movie/${QUERY}?api_key=${API_KEY}&language=${LANG}`;
 
   switch (action.type) {
-      case FETCH_DETAIL:
+    case FETCH_DETAIL:
       next([
         apiRequest({
           body: null,
@@ -34,6 +35,7 @@ export const detailMiddleware = () => (next: any) => (action: any) => {
       break;
 
     case `${DETAIL} ${API_ERROR}`:
+      next([setNotification({ message: action.payload, feature: DETAIL }), setLoader({ state: false, feature: DETAIL })]);
       break;
 
     default:

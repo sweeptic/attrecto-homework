@@ -21,7 +21,7 @@ export const normalizeMiddleware =
     }
 
     function getNormalizeData() {
-      return action.payload.reduce((acc: any, item: any) => {
+        return action.payload.reduce((acc: any, item: any) => {        
         acc[item[action.meta.normalizeKey]] = item;
         return acc;
       }, {});

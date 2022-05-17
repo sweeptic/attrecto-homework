@@ -37,14 +37,13 @@ export const apiMiddleware =
               feature: feature,
             };
               dispatch(apiError({ error, feature }));
-              console.log("dispatch error");
+
           } else {
-            dispatch(apiSuccess({ response, feature }));
+            dispatch(apiSuccess({ response, feature }));      
           }
         })
           .catch((error) => {
-            console.log('catch error');
-            
+              
           dispatch(apiError({ error, feature }));
         });
 
