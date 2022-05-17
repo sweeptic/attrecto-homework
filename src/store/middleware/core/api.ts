@@ -36,12 +36,15 @@ export const apiMiddleware =
               error: response.status_message,
               feature: feature,
             };
-            dispatch(apiError({ error, feature }));
+              dispatch(apiError({ error, feature }));
+              console.log("dispatch error");
           } else {
             dispatch(apiSuccess({ response, feature }));
           }
         })
-        .catch((error) => {
+          .catch((error) => {
+            console.log('catch error');
+            
           dispatch(apiError({ error, feature }));
         });
 

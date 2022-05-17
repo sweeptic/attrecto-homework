@@ -11,8 +11,6 @@ const MovieItem = ({ item, onDetails, onlyDetail }: IMovieItem) => {
     }
   }
 
-  console.log("render item");
-
   return (
     <div className="card" onClick={onDetailHandler}>
       <span key={item.id}>{item.title}</span>
