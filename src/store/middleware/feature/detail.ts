@@ -9,7 +9,6 @@ export const detailMiddleware = () => (next: any) => (action: any) => {
   next(action);
 
   const QUERY = action.payload;
-
   const QUERY_URL = `https://api.themoviedb.org/3/movie/${QUERY}?api_key=${API_KEY}&language=${LANG}`;
 
   switch (action.type) {

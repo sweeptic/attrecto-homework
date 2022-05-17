@@ -16,7 +16,6 @@ export const moviesMiddleware = () => (next: any) => (action: any) => {
         const QUERY = action.payload;
         const PAGE = action.meta.page;
         const MOVIES_URL = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=${LANG}&query=${QUERY}&page=${PAGE}&include_adult=false"`;
-
         next([
           apiRequest({
             body: null,

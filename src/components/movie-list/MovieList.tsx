@@ -1,5 +1,5 @@
 import MovieItem from "components/movie-item/MovieItem";
-import { forwardRef, useState } from "react";
+import { forwardRef, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "store/actions/detail";
 import { getMovesRawData } from "store/reducers/moviesReducer";
@@ -23,7 +23,7 @@ const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
   function getMovieListContent() {
     let content;
     if (inputLength < waitForKey) {
-      content = `please enter at least ${waitForKey} letters.`;
+      content = `Please enter at least ${waitForKey} letters.`;
     } else {
       content = moviesList.length > 0 ? moviesList : "There are no search results.";
     }
@@ -36,4 +36,4 @@ const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
   return <>{movieListContent}</>;
 });
 
-export default MovieList;
+export default memo(MovieList);
