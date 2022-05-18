@@ -6,14 +6,12 @@ interface IInputFilter {
   waitForKey: number;
   waitForMsec: number;
   clearWhenDelete: boolean;
+  setEnteredFilter: any;
+  enteredFilter: any;
 }
 
-const Input = forwardRef(({ waitForKey, waitForMsec, clearWhenDelete }: IInputFilter, inputRef: any) => {
-  // React.forwardRef((props, ref)
-  const [enteredFilter, setEnteredFilter] = useState("");
+const Input = forwardRef(({ waitForKey, waitForMsec, clearWhenDelete, setEnteredFilter, enteredFilter }: IInputFilter, inputRef: any) => {
   const [isCleaned, setIsCleaned] = useState(true);
-  const [page, setPage] = useState(1);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,7 +20,7 @@ const Input = forwardRef(({ waitForKey, waitForMsec, clearWhenDelete }: IInputFi
       setIsCleaned(false);
       const timer = setTimeout(() => {
         if (enteredFilter === inputValue) {
-          dispatch(fetchMovies({ query: enteredFilter, page: page }));
+          dispatch(fetchMovies({ query: enteredFilter, page: 1 }));
         }
       }, waitForMsec);
       return () => {

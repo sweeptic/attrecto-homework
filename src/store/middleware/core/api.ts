@@ -39,7 +39,6 @@ export const apiMiddleware =
               dispatch(apiError({ error, feature }));
 
           } else {
-              console.log('response', response);
               
             dispatch(apiSuccess({ response, feature }));      
           }

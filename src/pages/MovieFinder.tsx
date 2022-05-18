@@ -4,6 +4,7 @@ import InputFilter from "components/input-items/InputFilter";
 import MovieItem from "components/movie-item/MovieItem";
 import MovieList from "components/movie-list/MovieList";
 import Spinner from "components/overlays/Spinner";
+import Pagination from "components/pagination/Pagination";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cleanDetail } from "store/actions/detail";
@@ -30,6 +31,7 @@ const MovieFinder = () => {
 
   const [detailIsShown, setDetailIsShown] = useState(false);
   const [messageIsShown, setMessageIsShown] = useState(false);
+  const [enteredFilter, setEnteredFilter] = useState("");
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -74,7 +76,10 @@ const MovieFinder = () => {
       {detailIsShown && <ModalItem onClose={clearDetails} content={<MovieItem item={detail} onlyDetail={true} />} />}
       {messageIsShown && <ModalItem onClose={clearMessage} content={<ErrorItem message={errorMessage} />} />}
       <div>
-        <InputFilter {...inputFilterSetup} ref={inputRef} />
+        <InputFilter {...inputFilterSetup} ref={inputRef} enteredFilter={enteredFilter} setEnteredFilter={setEnteredFilter} />
+      </div>
+      <div>
+        <Pagination enteredFilter={enteredFilter} />
       </div>
       <article className="result">
         <MovieList waitForKey={inputFilterSetup.waitForKey} ref={inputRef} />
