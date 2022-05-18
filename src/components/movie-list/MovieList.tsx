@@ -2,10 +2,12 @@ import MovieItem from "components/movie-item/MovieItem";
 import { forwardRef, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "store/actions/detail";
+import { getSearchCount } from "store/reducers/moviesReducer";
 import { getMoviesArray } from "store/selectors/feature_selectors";
 
 const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
   const moviesData = useSelector((state) => getMoviesArray(state));
+  const count = useSelector((state) => getSearchCount(state));
 
   const dispatch = useDispatch();
   const inputLength = inputRef?.current?.value.length;
@@ -35,7 +37,12 @@ const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
   const moviesList = getMoviesList();
   const movieListContent = getMovieListContent();
 
-  return <>{movieListContent}</>;
+  return (
+    <>
+      <span>{`${count} Search result(s)`}</span>
+      <div>{movieListContent}</div>
+    </>
+  );
 });
 
 export default memo(MovieList);
