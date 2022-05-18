@@ -8,9 +8,10 @@ import { getMoviesArray } from "store/selectors/feature_selectors";
 const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
   const moviesData = useSelector((state) => getMoviesArray(state));
   const count = useSelector((state) => getSearchCount(state));
-
   const dispatch = useDispatch();
   const inputLength = inputRef?.current?.value.length;
+  const moviesList = getMoviesList();
+  const movieListContent = getMovieListContent();
 
   function onMovieSelectHandler(item: number) {
     dispatch(fetchDetail({ query: item.toString() }));
@@ -33,9 +34,6 @@ const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
     }
     return getContent();
   }
-
-  const moviesList = getMoviesList();
-  const movieListContent = getMovieListContent();
 
   return (
     <>

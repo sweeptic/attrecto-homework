@@ -37,9 +37,7 @@ export const apiMiddleware =
               feature: feature,
             };
               dispatch(apiError({ error, feature }));
-
           } else {
-              
             dispatch(apiSuccess({ response, feature }));      
           }
         })

@@ -15,8 +15,8 @@ export const cleanDetail = () => ({
   type: CLEAN_DETAIL,
 });
 
-export const setDetail = ({ movie, normalizeKey }: { movie: any; normalizeKey: string | null }) => ({
+export const setDetail = ({ movie }: { movie: any }) => ({
   type: SET_DETAIL,
   payload: movie,
-  meta: { normalizeKey, feature: DETAIL },
+  meta: { feature: DETAIL },
 });

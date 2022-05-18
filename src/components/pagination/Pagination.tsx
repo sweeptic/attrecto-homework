@@ -1,5 +1,4 @@
 import usePagination from "hooks/usePagination";
-import React from "react";
 import { useSelector } from "react-redux";
 import { getSearchActualPage, getSearchCount, getSearchTotalPage } from "store/reducers/moviesReducer";
 

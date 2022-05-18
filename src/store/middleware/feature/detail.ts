@@ -27,11 +27,11 @@ export const detailMiddleware = () => (next: any) => (action: any) => {
       break;
 
     case CLEAN_DETAIL:
-      next(setDetail({ movie: {}, normalizeKey: "" }));
+      next(setDetail({ movie: {}}));
       break;
 
     case `${DETAIL} ${API_SUCCESS}`:
-      next([setDetail({ movie: action.payload, normalizeKey: "" }), setLoader({ state: false, feature: DETAIL })]);
+      next([setDetail({ movie: action.payload }), setLoader({ state: false, feature: DETAIL })]);
       break;
 
     case `${DETAIL} ${API_ERROR}`:

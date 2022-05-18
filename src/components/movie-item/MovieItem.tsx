@@ -1,10 +1,10 @@
 interface IMovieItem {
   item: any;
-  onlyDetail?: boolean;
+  Details?: boolean;
   onDetails?: (arg0: number) => void;
 }
 
-const MovieItem = ({ item, onDetails, onlyDetail }: IMovieItem) => {
+const MovieItem = ({ item, onDetails, Details }: IMovieItem) => {
   function onDetailHandler() {
     if (onDetails) {
       onDetails(item.id);

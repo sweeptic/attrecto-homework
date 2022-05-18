@@ -6,7 +6,6 @@ import { getSearchResults, getSearchTotalPage } from "store/reducers/moviesReduc
 function usePagination(enteredFilter?: any) {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
-
   const maxPage = useSelector((state) => getSearchTotalPage(state));
   const SearchResults = useSelector((state) => getSearchResults(state));
   const [isPaginationEnabled, setPaginationEnabled] = useState(false);
