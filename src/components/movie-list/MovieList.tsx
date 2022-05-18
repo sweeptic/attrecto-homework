@@ -26,7 +26,8 @@ const MovieList = forwardRef(({ waitForKey }: any, inputRef: any) => {
   function getMovieListContent() {
     function getContent() {
       let content;
-      if (inputLength < waitForKey) {
+
+      if (inputLength < waitForKey || !inputLength) {
         content = `Please enter at least ${waitForKey} letters.`;
       } else {
         content = moviesList.length > 0 ? moviesList : "There are no search results.";
