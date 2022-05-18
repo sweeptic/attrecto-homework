@@ -1,19 +1,15 @@
 import { SET_MOVIES } from "store/actions/movie";
 
-const initState: any = {};
+export const initMoviesState: any = { results: {} };
 
-export const moviesReducer = (movies = initState, action: any) => {
+export const moviesReducer = (movies = initMoviesState, action: any) => {
   switch (action.type) {
-    case SET_MOVIES:
+    case SET_MOVIES: {
+      console.log(action.payload);
+
       return action.payload;
+    }
     default:
       return movies;
   }
-};
-
-const getMovies = (state: any) => state.movies;
-
-export const getMoviesRawData = (state: any) => {
-  const movies = getMovies(state);
-  return movies;
 };

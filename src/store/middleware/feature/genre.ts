@@ -26,11 +26,11 @@ export const genresMiddleware = () => (next: any) => (action: any) => {
       break;
 
     case `${GENRES} ${API_SUCCESS}`:
-      next([setGenres({ movies: action.payload.genres, normalizeKey: "id" }), setLoader({ state: false, feature: GENRES })]);
+      next([setGenres({ movies: action.payload, normalizeKey: "id", listObj: "genres" }), setLoader({ state: false, feature: GENRES })]);
       break;
 
-      case `${GENRES} ${API_ERROR}`:
-           next([setNotification({ message: action.payload, feature: GENRES }), setLoader({ state: false, feature: GENRES })]);
+    case `${GENRES} ${API_ERROR}`:
+      next([setNotification({ message: action.payload, feature: GENRES }), setLoader({ state: false, feature: GENRES })]);
       break;
 
     default:

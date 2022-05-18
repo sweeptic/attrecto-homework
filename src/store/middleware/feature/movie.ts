@@ -1,8 +1,8 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { setNotification } from "store/actions/message";
-
 import { CLEAN_MOVIES, FETCH_MOVIES, MOVIES, setMovies } from "store/actions/movie";
 import { setLoader } from "store/actions/ui";
+import { initMoviesState } from "store/reducers/moviesReducer";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const LANG = "en-US";
@@ -30,11 +30,11 @@ export const moviesMiddleware = () => (next: any) => (action: any) => {
       break;
 
     case CLEAN_MOVIES:
-      next(setMovies({ movies: {}, normalizeKey: "" }));
+      next(setMovies({ movies: initMoviesState, normalizeKey: "", listObj: "" }));
       break;
 
     case `${MOVIES} ${API_SUCCESS}`:
-      next([setMovies({ movies: action.payload.results, normalizeKey: "id" }), setLoader({ state: false, feature: MOVIES })]);
+      next([setMovies({ movies: action.payload, normalizeKey: "id", listObj: "results" }), setLoader({ state: false, feature: MOVIES })]);
       break;
 
     case `${MOVIES} ${API_ERROR}`:

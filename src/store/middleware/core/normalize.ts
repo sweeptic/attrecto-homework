@@ -13,17 +13,19 @@ export const normalizeMiddleware =
 
     function actionRouter(movies: any) {
       if (action.type.includes(MOVIES)) {
-        next(setMovies({ movies, normalizeKey: null }));
+        next(setMovies({ movies, normalizeKey: null, listObj: "" }));
       }
       if (action.type.includes(GENRES)) {
-        next(setGenres({ movies, normalizeKey: null }));
+        next(setGenres({ movies, normalizeKey: null, listObj: "" }));
       }
     }
 
     function getNormalizeData() {
-        return action.payload.reduce((acc: any, item: any) => {        
+      const list = action.payload[action.meta.listObj].reduce((acc: any, item: any) => {
         acc[item[action.meta.normalizeKey]] = item;
         return acc;
       }, {});
+
+      return { ...action.payload, [action.meta.listObj]: list };
     }
   };

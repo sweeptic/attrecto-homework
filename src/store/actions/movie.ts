@@ -16,8 +16,8 @@ export const cleanMovies = () => ({
   type: CLEAN_MOVIES,
 });
 
-export const setMovies = ({ movies, normalizeKey }: { movies: any; normalizeKey: string | null }) => ({
+export const setMovies = ({ movies, normalizeKey, listObj = "" }: { movies: any; normalizeKey: string | null; listObj: any }) => ({
   type: SET_MOVIES,
   payload: movies,
-  meta: { normalizeKey, feature: MOVIES },
+  meta: { normalizeKey, feature: MOVIES, listObj },
 });

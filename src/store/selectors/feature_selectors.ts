@@ -1,18 +1,18 @@
 import { createSelector } from "reselect";
 
-const getMovies = (state: any) => state.movies;
-const getGenres = (state: any) => state.genres;
+const getMovies = (state: any) => state.movies.results;
+const getGenres = (state: any) => state.genres.genres;
 
 export const selectMovies: any = createSelector([getMovies, getGenres], (movies: any, genres: any) => {
   return Object.keys(movies).reduce((movieArray: any = [], item) => {
     const { title, name, overview } = movies[item];
-    const itemCategories = getMovieGenres(movies[item].genre_ids, genres);
+    // const itemCategories = getMovieGenres(movies[item].genre_ids, genres);
 
     movieArray.push({
       id: item.toString(),
       title: title ?? name,
       overview,
-      itemCategories,
+      //   itemCategories,
     });
 
     return movieArray;
