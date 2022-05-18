@@ -3,6 +3,7 @@ import ErrorItem from "components/error-item/ErrorItem";
 import InputFilter from "components/input-items/InputFilter";
 import MovieItem from "components/movie-item/MovieItem";
 import MovieList from "components/movie-list/MovieList";
+import ModalContainer from "components/overlays/ModalContainer";
 import Spinner from "components/overlays/Spinner";
 import Pagination from "components/pagination/Pagination";
 import { useEffect, useRef, useState } from "react";
@@ -21,49 +22,15 @@ const inputFilterSetup = {
   clearWhenDelete: true,
 };
 
-const errorMessage = "Something went wrong. Please try again later.";
-
 const MovieFinder = () => {
-  const spinner = useSelector((state) => getLoadingState(state));
-  const detail = useSelector((state) => getDetailRawData(state));
-  const messages = useSelector((state) => getMessageRawData(state));
-  const dispatch = useDispatch();
-
-  const [detailIsShown, setDetailIsShown] = useState(false);
-  const [messageIsShown, setMessageIsShown] = useState(false);
   const [enteredFilter, setEnteredFilter] = useState("");
-
+  const spinner = useSelector((state) => getLoadingState(state));
+  const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     getStaticCollections();
   }, []);
-
-  useEffect(() => {
-    if (Object.keys(detail).length) {
-      setDetailIsShown(true);
-    } else {
-      setDetailIsShown(false);
-    }
-  }, [detail]);
-
-  useEffect(() => {
-    if (messages.length) {
-      setMessageIsShown(true);
-    } else {
-      setMessageIsShown(false);
-    }
-  }, [messages]);
-
-  function clearDetails() {
-    dispatch(cleanDetail());
-    inputRef.current?.focus();
-  }
-
-  function clearMessage() {
-    dispatch(removeNotification());
-    inputRef.current?.focus();
-  }
 
   // Fetch categories, languages, countryes, other static datas.
   function getStaticCollections() {
@@ -73,8 +40,7 @@ const MovieFinder = () => {
   return (
     <section>
       <Spinner isLoading={spinner.loading} />
-      {detailIsShown && <ModalItem onClose={clearDetails} content={<MovieItem item={detail} onlyDetail={true} />} />}
-      {messageIsShown && <ModalItem onClose={clearMessage} content={<ErrorItem message={errorMessage} />} />}
+      <ModalContainer ref={inputRef} />
       <div>
         <InputFilter {...inputFilterSetup} ref={inputRef} enteredFilter={enteredFilter} setEnteredFilter={setEnteredFilter} />
       </div>

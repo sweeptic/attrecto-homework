@@ -5,7 +5,7 @@ interface IModalItem {
   onClose: () => void;
 }
 
-const ModalItem = (props: IModalItem) => {
+const ModalItem = (props: any) => {
   return (
     <Modal onClose={props.onClose}>
       <div>{props.content}</div>
