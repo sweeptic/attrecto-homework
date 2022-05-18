@@ -1,18 +1,19 @@
 import { createSelector } from "reselect";
+import { getGenresObject } from "store/reducers/genresReducer";
+import { getMovies } from "store/reducers/moviesReducer";
 
-const getMovies = (state: any) => state.movies.results;
-const getGenres = (state: any) => state.genres.genres;
+export const selectMovies: any = createSelector([getMovies, getGenresObject], (movies: any, genres: any) => {
 
-export const selectMovies: any = createSelector([getMovies, getGenres], (movies: any, genres: any) => {
-  return Object.keys(movies).reduce((movieArray: any = [], item) => {
-    const { title, name, overview } = movies[item];
-    const itemCategories = getMovieGenres(movies[item].genre_ids, genres);
+  return movies.reduce((movieArray: any = [], item: any) => {
+    const { id, title, name, overview } = item;
+
+    const itemCategories = getMovieGenres(item.genre_ids, genres);
 
     movieArray.push({
-      id: item.toString(),
+      id,
       title: title ?? name,
       overview,
-      itemCategories,
+        itemCategories,
     });
 
     return movieArray;
@@ -24,7 +25,7 @@ export function getMovieGenres(movieItem: any, genres: any) {
 
   if (movieItem) {
     movieItem.forEach((element: any) => {
-      const genre = genres[element]?.name;
+      const genre = genres[element];
       genre && catRes.push(genre);
     });
   }

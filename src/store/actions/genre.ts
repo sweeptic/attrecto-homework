@@ -10,8 +10,8 @@ export const fetchGenres = ({ query }: { query: string }) => ({
   payload: query,
 });
 
-export const setGenres = ({ movies, normalizeKey, listObj }: { movies: any; normalizeKey: string | null; listObj: any }) => ({
+export const setGenres = ({ genres }: { genres: any }) => ({
   type: SET_GENRES,
-  payload: movies,
-  meta: { normalizeKey, feature: GENRES, listObj },
+  payload: genres,
+  meta: { feature: GENRES },
 });
