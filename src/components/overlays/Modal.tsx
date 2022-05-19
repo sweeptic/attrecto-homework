@@ -4,13 +4,15 @@ interface IBackdrop {
   onClose: () => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Backdrop = ({ onClose }: IBackdrop) => {
   return <div className={"backdrop"} onClick={onClose} />;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ModalOverlay = (props: any) => {
+interface ModalOverlay {
+  children?: React.ReactNode;
+}
+
+const ModalOverlay = (props: ModalOverlay) => {
   return (
     <div /*className={classes.modal}*/>
       <div /*className={classes.content}*/>{props.children}</div>
@@ -20,16 +22,16 @@ const ModalOverlay = (props: any) => {
 
 interface IModal {
   onClose: () => void;
+  children?: React.ReactNode;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const portalElement = document.getElementById("overlays")!;
+const portalElement = document.getElementById("overlays");
 
-const Modal = (props: any) => {
+const Modal = (props: IModal) => {
   return (
     <>
-      {createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
-      {createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement)}
+      {portalElement ? createPortal(<Backdrop onClose={props.onClose} />, portalElement) : null}
+      {portalElement ? createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement) : null}
     </>
   );
 };

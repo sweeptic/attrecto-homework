@@ -1,4 +1,8 @@
-const ErrorItem = ({ message }: any) => {
+interface IErrorItem {
+  message: string;
+}
+
+const ErrorItem = ({ message }: IErrorItem) => {
   return <div>{message}</div>;
 };
 

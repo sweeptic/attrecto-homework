@@ -1,4 +1,5 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardedRefHelper } from "helpers/tsHelpers";
+import { Dispatch, ForwardedRef, forwardRef, SetStateAction, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cleanMovies, fetchMovies } from "store/actions/movie";
 
@@ -6,42 +7,46 @@ interface IInputFilter {
   waitForKey: number;
   waitForMsec: number;
   clearWhenDelete: boolean;
-  setEnteredFilter: any;
-  enteredFilter: any;
+  setEnteredFilter: Dispatch<SetStateAction<string>>;
+  enteredFilter: string;
 }
 
-const Input = forwardRef(({ waitForKey, waitForMsec, clearWhenDelete, setEnteredFilter, enteredFilter }: IInputFilter, inputRef: any) => {
-  const [isCleaned, setIsCleaned] = useState(true);
-  const dispatch = useDispatch();
+const InputFilter = forwardRef(
+  ({ waitForKey, waitForMsec, clearWhenDelete, setEnteredFilter, enteredFilter }: IInputFilter, inputRef: ForwardedRef<HTMLInputElement>) => {
+    const [isCleaned, setIsCleaned] = useState(true);
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    const inputValue = inputRef?.current.value;
-    if (enteredFilter.length >= waitForKey) {
-      setIsCleaned(false);
-      const timer = setTimeout(() => {
-        if (enteredFilter === inputValue) {
-          dispatch(fetchMovies({ query: enteredFilter, page: 1 }));
-        }
-      }, waitForMsec);
-      return () => {
-        clearTimeout(timer);
-      };
-    } else {
-      setIsCleaned(true);
-    }
-  }, [enteredFilter]);
+    useEffect(() => {
 
-  useEffect(() => {
-    if (isCleaned && enteredFilter && clearWhenDelete) {
-      dispatch(cleanMovies());
-    }
-  }, [isCleaned]);
+      if (enteredFilter.length >= waitForKey) {
+        setIsCleaned(false);
+        const timer = setTimeout(() => {
+          if (enteredFilter === forwardedRefHelper(inputRef)?.value) {
+            dispatch(fetchMovies({ query: enteredFilter, page: 1 }));
+          }
+        }, waitForMsec);
+        return () => {
+          clearTimeout(timer);
+        };
+      } else {
+        setIsCleaned(true);
+      }
+    }, [enteredFilter]);
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, [inputRef]);
+    useEffect(() => {
+      if (isCleaned && enteredFilter && clearWhenDelete) {
+        dispatch(cleanMovies());
+      }
+    }, [isCleaned]);
 
-  return <input ref={inputRef} type="text" value={enteredFilter} onChange={(event) => setEnteredFilter(event.target.value)} />;
-});
+    useEffect(() => {
+      if (inputRef != null && typeof inputRef !== "function") {
+        inputRef.current?.focus();
+      }
+    }, [inputRef]);
 
-export default Input;
+    return <input ref={inputRef} type="text" value={enteredFilter} onChange={(event) => setEnteredFilter(event.target.value)} />;
+  }
+);
+
+export default InputFilter;

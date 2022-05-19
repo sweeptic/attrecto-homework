@@ -1,14 +1,15 @@
 import ModalItem from "components/detail-item/ModalItem";
 import ErrorItem from "components/error-item/ErrorItem";
 import MovieItem from "components/movie-item/MovieItem";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardedRefHelper } from "helpers/tsHelpers";
+import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cleanDetail } from "store/actions/detail";
 import { removeNotification } from "store/actions/message";
 import { getDetailRawData } from "store/reducers/detailReducer";
 import { getMessageRawData } from "store/reducers/notificationReducer";
 
-const ModalContainer = forwardRef((props, inputRef: any) => {
+const ModalContainer = forwardRef((_, inputRef: ForwardedRef<HTMLInputElement>) => {
   const dispatch = useDispatch();
   const detail = useSelector((state) => getDetailRawData(state));
   const messages = useSelector((state) => getMessageRawData(state));
@@ -34,12 +35,12 @@ const ModalContainer = forwardRef((props, inputRef: any) => {
 
   function clearDetails() {
     dispatch(cleanDetail());
-    inputRef.current?.focus();
+    forwardedRefHelper(inputRef)?.focus();
   }
 
   function clearMessage() {
     dispatch(removeNotification());
-    inputRef.current?.focus();
+    forwardedRefHelper(inputRef)?.focus();
   }
 
   return (

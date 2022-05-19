@@ -2,7 +2,11 @@ import usePagination from "hooks/usePagination";
 import { useSelector } from "react-redux";
 import { getSearchActualPage, getSearchCount, getSearchTotalPage } from "store/reducers/moviesReducer";
 
-const Pagination = (enteredFilter: any) => {
+interface IPagination {
+  enteredFilter: string;
+}
+
+const Pagination = (enteredFilter: IPagination) => {
   const count = useSelector((state) => getSearchCount(state));
   const actual = useSelector((state) => getSearchActualPage(state));
   const total = useSelector((state) => getSearchTotalPage(state));
