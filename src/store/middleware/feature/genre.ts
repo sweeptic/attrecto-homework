@@ -12,7 +12,7 @@ export const genresMiddleware = () => (next: any) => (action: any) => {
   switch (action.type) {
     case FETCH_GENRES:
       {
-        const GENRE_URL = `https://api.themgoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=${LANG}`;
+        const GENRE_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=${LANG}`;
         next([
           apiRequest({
             body: null,

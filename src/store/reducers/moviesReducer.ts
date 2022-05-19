@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { SET_MOVIES } from "store/actions/movie";
-import { moviesData } from "store/interfaces/movies";
+import { moviesData } from "store/interfaces/movieTypes";
 
 export const initMoviesState: MovieResponseData = { results: [], total_results: 0, page: 0, total_pages: 0 };
 

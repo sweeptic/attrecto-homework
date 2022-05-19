@@ -1,5 +1,11 @@
 import { Dispatch } from "react";
-import { apiError, apiSuccess, API_REQUEST, IErrorObject, IFeatureAction, IFetchRequestMeta, IRequestAction } from "store/actions/api";
+import { apiError, apiSuccess, API_REQUEST, IFeatureAction, IFetchRequestMeta, IRequestAction } from "store/actions/api";
+
+export interface IErrorObject {
+  response: string;
+  error: string;
+  feature: string;
+}
 
 export const apiMiddleware =
   ({ dispatch }: { dispatch: Dispatch<IRequestAction | IFeatureAction> }) =>
