@@ -1,77 +1,68 @@
 import { Dispatch } from "react";
+import { Action } from "redux";
 import { featureTypes } from "store/interfaces/featureTypes";
+import { NotificationObject } from "store/middleware/core/notification";
+import { MovieResponseData } from "store/reducers/moviesReducer";
 
 // action_types;
 export const API_REQUEST = "API_REQUEST";
 export const API_SUCCESS = "API_SUCCESS";
 export const API_ERROR = "API_ERROR";
 
-type GenresData = {
-  total: string;
-};
+export type ErrorObject = string | IErrorObject;
+export type ResponseObject = MovieResponseData;
 
-type DetailData = {
-  total: string;
-};
+export type IPayload = ResponseObject | ErrorObject | NotificationObject | undefined;
 
-type MovieData = {
-  total: string;
-};
-export type responseObject = GenresData | DetailData | MovieData;
-
-export interface IApiResponse {
-  response?: GenresData | DetailData | MovieData;
-  error?: IErrorObject;
-  feature: typeof featureTypes[number];
-}
-
-export interface IActions {
-  type: string;
-  meta: IMeta 
-  action: IActionObject;
-}
-
-export interface IActionObject {
-  type: string;
-  meta: IMeta | { feature: typeof featureTypes[number] };
-  payload: responseObject | IErrorObject | string | null | undefined;
-}
-
-export interface IMeta {
+export interface IRequestMeta {
+  url: string;
+  body: string | null;
   method: string;
-  url: RequestInfo;
   feature: typeof featureTypes[number];
-  body: string;
 }
 
-export interface IDispatchAction extends IMeta {
-  dispatch: Dispatch<IApiRequestActionCreator | IActionObject>;
+export interface IFetchRequestMeta extends IRequestMeta {
+  dispatch: Dispatch<IRequestAction | IFeatureAction>;
 }
 
-export type IApiRequestActionCreator = (arg: IMeta) => IActionObject;
+export interface IRequestAction extends Action {
+  type: string;
+  payload: string | null;
+  meta: IRequestMeta;
+}
+
+export interface IFeatureAction extends Action {
+  type: string;
+  payload: IPayload;
+  meta: { feature: typeof featureTypes[number] };
+}
+
+export interface IFeatureMeta {
+  feature: typeof featureTypes[number];
+  response?: ResponseObject;
+  error?: string | IErrorObject;
+}
 
 export interface IErrorObject {
   response: string;
   error: string;
-  feature: typeof featureTypes[number];
+  feature: string;
 }
 
 //action creators
-export const apiRequest = ({ body, method, url, feature }: IMeta): IActionObject => ({
+export const apiRequest = ({ body, method, url, feature }: IRequestMeta): IRequestAction => ({
   type: `${feature} ${API_REQUEST}`,
   payload: body,
-  meta: { method, url, feature },
+  meta: { method, url, feature, body },
 });
 
-// export type DispatchApiResult = (arg: IApiRequestParams) => IApiRequest;
-
-export const apiSuccess = ({ response, feature }: IApiResponse): IActionObject => ({
+export const apiSuccess = ({ response, feature }: IFeatureMeta): IFeatureAction => ({
   type: `${feature} ${API_SUCCESS}`,
   payload: response,
   meta: { feature },
 });
 
-export const apiError = ({ error, feature }: IApiResponse): IActionObject => ({
+export const apiError = ({ error, feature }: IFeatureMeta): IFeatureAction => ({
   type: `${feature} ${API_ERROR}`,
   payload: error,
   meta: { feature },

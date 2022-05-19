@@ -1,5 +1,5 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
-import { setNotification } from "store/actions/message";
+import { setNotification } from "store/actions/notification";
 import { CLEAN_MOVIES, FETCH_MOVIES, MOVIES, setMovies } from "store/actions/movie";
 import { setLoader } from "store/actions/ui";
 import { initMoviesState } from "store/reducers/moviesReducer";

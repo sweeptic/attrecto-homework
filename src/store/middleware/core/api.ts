@@ -1,31 +1,23 @@
 import { Dispatch } from "react";
-import {
-  apiError,
-  apiSuccess,
-  API_REQUEST,
-  IApiRequestActionCreator,
-  IMeta,
-  IDispatchAction,
-  IActions,
-  IErrorObject,
-  IActionObject,
-} from "store/actions/api";
+import { apiError, apiSuccess, API_REQUEST, IErrorObject, IFeatureAction, IFetchRequestMeta, IRequestAction } from "store/actions/api";
 
 export const apiMiddleware =
-  ({ dispatch }: { dispatch: Dispatch<IApiRequestActionCreator | IActionObject> }) =>
-  (next: Dispatch<IActions>) =>
-  (action: IActions) => {
+  ({ dispatch }: { dispatch: Dispatch<IRequestAction | IFeatureAction> }) =>
+  (next: Dispatch<IRequestAction>) =>
+  (action: IRequestAction) => {
     next(action);
 
     if (action.type.includes(API_REQUEST)) {
-      const { body, url, method, feature }: IMeta = action.meta;
+      //   console.log(action);
+
+      const { body, url, method, feature } = action.meta;
 
       fetchData({ url, body, method, feature, dispatch });
     }
   };
 
 // (parameter) feature: "[Detail]" | "[Genres]" | "[Movies]"
-function fetchData({ url, body, method, feature, dispatch }: IDispatchAction) {
+function fetchData({ url, body, method, feature, dispatch }: IFetchRequestMeta) {
   fetch(url, { body, method })
     .then((response) => response.json())
     .then((response) => {
@@ -40,7 +32,8 @@ function fetchData({ url, body, method, feature, dispatch }: IDispatchAction) {
         dispatch(apiSuccess({ response, feature }));
       }
     })
-    .catch((error) => {
+    .catch((error_) => {
+      const error: string = error_.message;
       dispatch(apiError({ error, feature }));
     });
 }

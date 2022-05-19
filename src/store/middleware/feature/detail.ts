@@ -1,6 +1,6 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { CLEAN_DETAIL, DETAIL, FETCH_DETAIL, setDetail } from "store/actions/detail";
-import { setNotification } from "store/actions/message";
+import { setNotification } from "store/actions/notification";
 import { setLoader } from "store/actions/ui";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;

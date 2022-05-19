@@ -12,6 +12,7 @@ import { detailMiddleware } from "./middleware/feature/detail";
 
 import { notificationMiddleware } from "./middleware/core/notification";
 import { notificationReducer } from "./reducers/notificationReducer";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 const reducer = {
   ui: uiReducer,
@@ -23,8 +24,15 @@ const reducer = {
 
 const featureMiddleware = [genresMiddleware, detailMiddleware, moviesMiddleware];
 
-const coreMiddleware = [actionSplitterMiddleware, apiMiddleware/*, normalizeMiddleware*/, notificationMiddleware /*, loggerMiddleware*/];
+const coreMiddleware = [actionSplitterMiddleware, apiMiddleware /*, normalizeMiddleware*/, notificationMiddleware /*, loggerMiddleware*/];
 
 const middleware = [...featureMiddleware, ...coreMiddleware];
 
 export const store = configureStore({ reducer, middleware });
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

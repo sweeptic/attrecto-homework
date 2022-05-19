@@ -5,7 +5,7 @@ import { forwardedRefHelper } from "helpers/tsHelpers";
 import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cleanDetail } from "store/actions/detail";
-import { removeNotification } from "store/actions/message";
+import { removeNotification } from "store/actions/notification";
 import { getDetailRawData } from "store/reducers/detailReducer";
 import { getMessageRawData } from "store/reducers/notificationReducer";
 

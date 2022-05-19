@@ -1,6 +1,6 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { FETCH_GENRES, GENRES, setGenres } from "store/actions/genre";
-import { setNotification } from "store/actions/message";
+import { setNotification } from "store/actions/notification";
 import { setLoader } from "store/actions/ui";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
@@ -12,7 +12,7 @@ export const genresMiddleware = () => (next: any) => (action: any) => {
   switch (action.type) {
     case FETCH_GENRES:
       {
-        const GENRE_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=${LANG}`;
+        const GENRE_URL = `https://api.themgoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=${LANG}`;
         next([
           apiRequest({
             body: null,
