@@ -11,7 +11,7 @@ export const apiMiddleware =
   ({ dispatch }: { dispatch: Dispatch<any> }) =>
   (next: Dispatch<any>) =>
   (action: any) => {
-    console.log("ACTION", action);
+    // console.log("ACTION", action);
 
     next(action);
     if (action.type.includes(API_REQUEST)) {
@@ -26,7 +26,7 @@ function fetchData({ url, body, method, feature, dispatch }: any): void {
     .then((response) => response.json())
     .then((response) => {
       if (response.success === false) {
-        const error: IErrorObject = {
+        const error: any = {
           response: response.status_code,
           error: response.status_message,
           feature: feature,
@@ -37,7 +37,7 @@ function fetchData({ url, body, method, feature, dispatch }: any): void {
       }
     })
     .catch((error_) => {
-      const error: string = error_.message;
+      const error: any = error_.message;
       dispatch(apiError({ error, feature }));
     });
 }

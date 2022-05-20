@@ -31,7 +31,7 @@ export interface IBaseType {
 //   url: string;
 //   body: string | null;
 //   method: string;
-//   feature: typeof featureTypes[number];
+//   feature: string;
 // }
 
 // export interface IFetchRequestMeta extends IApiRequestMeta {
@@ -45,11 +45,11 @@ export interface IBaseType {
 
 // export interface IFeatureAction extends IAction {
 //   payload: TFeaturePayload;
-//   meta: { feature: typeof featureTypes[number] };
+//   meta: { feature: string };
 // }
 
 // export interface IFeatureMeta {
-//   feature: typeof featureTypes[number];
+//   feature: string;
 //   response?: TResponseObject;
 //   error?: TErrorObject;
 // }
