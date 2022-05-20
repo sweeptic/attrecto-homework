@@ -5,12 +5,15 @@ export const FETCH_MOVIES = `${MOVIES} FETCH`;
 export const CLEAN_MOVIES = `${MOVIES} CLEAN`;
 export const SET_MOVIES = `${MOVIES} SET`;
 
+
 //action creators
-export const fetchMovies = ({ query, page }: { query: string; page: number }) => ({
-  type: FETCH_MOVIES,
-  payload: query,
-  meta: { page },
-});
+export const fetchMovies = ({ query, page }: any): any => {
+  return {
+    type: FETCH_MOVIES,
+    payload: query,
+    meta: { page },
+  };
+};
 
 export const cleanMovies = () => ({
   type: CLEAN_MOVIES,

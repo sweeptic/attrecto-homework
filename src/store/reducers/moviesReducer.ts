@@ -20,7 +20,7 @@ export interface moviesState {
 export const moviesReducer = (movies: MovieResponseData = initMoviesState, action: AnyAction) => {
   switch (action.type) {
     case SET_MOVIES: {
-      console.log(movies);
+
 
       return action.payload;
     }

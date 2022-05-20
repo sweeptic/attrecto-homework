@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { apiError, apiSuccess, API_REQUEST, IFeatureAction, IFetchRequestMeta, IRequestAction } from "store/actions/api";
+import { apiError, apiSuccess, API_REQUEST } from "store/actions/api";
 
 export interface IErrorObject {
   response: string;
@@ -8,22 +8,20 @@ export interface IErrorObject {
 }
 
 export const apiMiddleware =
-  ({ dispatch }: { dispatch: Dispatch<IRequestAction | IFeatureAction> }) =>
-  (next: Dispatch<IRequestAction>) =>
-  (action: IRequestAction) => {
+  ({ dispatch }: { dispatch: Dispatch<any> }) =>
+  (next: Dispatch<any>) =>
+  (action: any) => {
+    console.log("ACTION", action);
+
     next(action);
-
     if (action.type.includes(API_REQUEST)) {
-      //   console.log(action);
-
-      const { body, url, method, feature } = action.meta;
+      const { body, url, method, feature }: any = action.meta;
 
       fetchData({ url, body, method, feature, dispatch });
     }
   };
 
-// (parameter) feature: "[Detail]" | "[Genres]" | "[Movies]"
-function fetchData({ url, body, method, feature, dispatch }: IFetchRequestMeta) {
+function fetchData({ url, body, method, feature, dispatch }: any): void {
   fetch(url, { body, method })
     .then((response) => response.json())
     .then((response) => {

@@ -1,3 +1,4 @@
+
 export const DETAIL = "[Detail]";
 
 //action types
@@ -6,7 +7,7 @@ export const CLEAN_DETAIL = `${DETAIL} CLEAN`;
 export const SET_DETAIL = `${DETAIL} SET`;
 
 //action creators
-export const fetchDetail = ({ query }: { query: string }) => ({
+export const fetchDetail = ({ query }: any): any => ({
   type: FETCH_DETAIL,
   payload: query,
 });

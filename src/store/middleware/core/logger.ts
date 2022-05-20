@@ -1,11 +1,10 @@
 import { Dispatch } from "react";
-import { IRequestAction } from "store/actions/api";
 import { RootState } from "store/store";
 
 export const loggerMiddleware =
   ({ getState }: { getState: () => RootState }) =>
-  (next: Dispatch<IRequestAction>) =>
-  (action: IRequestAction) => {
+  (next: Dispatch<any>) =>
+  (action: any) => {
     const { NODE_ENV } = process.env;
 
     if (NODE_ENV === "development") {

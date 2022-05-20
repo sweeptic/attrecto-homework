@@ -1,5 +1,6 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { FETCH_GENRES, GENRES, setGenres } from "store/actions/genre";
+
 import { setNotification } from "store/actions/notification";
 import { setLoader } from "store/actions/ui";
 
@@ -7,7 +8,7 @@ const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const LANG = "en-US";
 
 export const genresMiddleware = () => (next: any) => (action: any) => {
-  //   next(action);
+// console.log("ACTION", action);
 
   switch (action.type) {
     case FETCH_GENRES:

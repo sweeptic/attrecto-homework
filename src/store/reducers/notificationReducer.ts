@@ -6,7 +6,7 @@ export const notificationReducer = (notifications = initState, action: any) => {
   switch (true) {
     case action.type.includes(SET_NOTIFICATIONS): {
           const errList = [...notifications, action.payload];
-        //   console.log(errList);
+
           
       return errList;
     }

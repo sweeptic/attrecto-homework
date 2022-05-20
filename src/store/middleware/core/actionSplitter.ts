@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
-import { IRequestAction } from "store/actions/api";
+// import { IApiRequestAction } from "store/actions/api";
 
-export const actionSplitterMiddleware = () => (next: Dispatch<IRequestAction>) => (action: IRequestAction) => {
+export const actionSplitterMiddleware = () => (next: Dispatch<any>) => (action: any) => {
   if (Array.isArray(action)) {
     action.forEach((_action) => next(_action));
   } else {

@@ -1,20 +1,21 @@
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { setNotification } from "store/actions/notification";
-import { CLEAN_MOVIES, FETCH_MOVIES, MOVIES, setMovies } from "store/actions/movie";
+import { CLEAN_MOVIES, FETCH_MOVIES,  MOVIES, setMovies } from "store/actions/movie";
 import { setLoader } from "store/actions/ui";
 import { initMoviesState } from "store/reducers/moviesReducer";
+import { Dispatch } from "react";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const LANG = "en-US";
 
 export const moviesMiddleware = () => (next: any) => (action: any) => {
+//   console.log("ACTION", action);
   next(action);
-
   switch (action.type) {
     case FETCH_MOVIES:
       {
         const QUERY = action.payload;
-        const PAGE = action.meta.page;
+        const PAGE = action.meta?.page;
         const MOVIES_URL = `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=${LANG}&query=${QUERY}&page=${PAGE}&include_adult=false"`;
         next([
           apiRequest({
