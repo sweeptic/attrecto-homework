@@ -1,6 +1,4 @@
-import { featureTypes } from "store/interfaces/featureTypes";
 import { detailResultData } from "store/interfaces/movieTypes";
-
 export const DETAIL = "[Detail]";
 
 //action types

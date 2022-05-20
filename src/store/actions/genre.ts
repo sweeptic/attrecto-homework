@@ -1,6 +1,4 @@
-import { featureTypes } from "store/interfaces/featureTypes";
 import { genresResultData } from "store/interfaces/movieTypes";
-
 export const GENRES = "[Genres]";
 
 //action types

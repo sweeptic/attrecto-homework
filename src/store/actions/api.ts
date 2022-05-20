@@ -2,7 +2,6 @@
 export const API_REQUEST = "API_REQUEST";
 export const API_SUCCESS = "API_SUCCESS";
 export const API_ERROR = "API_ERROR";
-import { featureTypes } from "store/interfaces/featureTypes";
 import { genresResultData, moviesResultData, detailResultData } from "store/interfaces/movieTypes";
 
 interface IApiRequest {

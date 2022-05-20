@@ -1,5 +1,3 @@
-import { featureTypes } from "store/interfaces/featureTypes";
-
 // action_types;
 export const SET_LOADER = "SET_LOADER";
 

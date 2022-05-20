@@ -1,4 +1,4 @@
-import { featureTypes } from "store/interfaces/featureTypes";
+
 
 // action_types;
 export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
