@@ -1,4 +1,4 @@
-import { AnyAction } from "redux";
+import { Middleware } from "redux";
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { CLEAN_DETAIL, DETAIL, FETCH_DETAIL, setDetail } from "store/actions/detail";
 
@@ -9,7 +9,7 @@ const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const LANG = "en-US";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const detailMiddleware = () => (next: any) => (action: AnyAction) => {
+export const detailMiddleware: Middleware = () => (next: any) => (action) => {
   next(action);
 
   const QUERY = action.payload;

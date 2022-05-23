@@ -3,13 +3,13 @@ import { setNotification } from "store/actions/notification";
 import { CLEAN_MOVIES, FETCH_MOVIES,  MOVIES, setMovies } from "store/actions/movie";
 import { setLoader } from "store/actions/ui";
 import { initMoviesState } from "store/reducers/moviesReducer";
-import { AnyAction } from "redux";
+import { AnyAction, Middleware } from "redux";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const LANG = "en-US";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const moviesMiddleware = () => (next: any) => (action: AnyAction) => {
+export const moviesMiddleware: Middleware = () => (next: any) => (action: AnyAction) => {
 
   next(action);
   switch (action.type) {

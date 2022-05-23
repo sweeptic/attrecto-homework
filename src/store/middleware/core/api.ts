@@ -1,22 +1,22 @@
 import { Dispatch } from "react";
-import { AnyAction } from "redux";
-import { apiError, apiSuccess, API_REQUEST, IApiRequest } from "store/actions/api";
+import { Middleware } from "redux";
+import { apiError, apiSuccess, API_REQUEST, IApiErrorAction, IApiRequest, IApiSuccessAction } from "store/actions/api";
 import { invalid1 } from "store/actions/notification";
 
-export const apiMiddleware =
-  ({ dispatch }: { dispatch: Dispatch<AnyAction> }) =>
-  (next: Dispatch<AnyAction>) =>
-  (action: AnyAction) => {
+export const apiMiddleware: Middleware =
+  ({ dispatch }) =>
+  (next) =>
+  (action) => {
     next(action);
     if (action.type.includes(API_REQUEST)) {
       const { body, url, method, feature }: IApiRequest = action.meta;
 
-      fetchData({ url, body, method, feature, dispatch }); 
+      fetchData({ url, body, method, feature, dispatch });
     }
   };
 
 interface fetchDataParam extends IApiRequest {
-  dispatch: Dispatch<AnyAction>;
+  dispatch: Dispatch<IApiErrorAction | IApiSuccessAction>;
 }
 
 function fetchData({ url, body, method, feature, dispatch }: fetchDataParam): void {
