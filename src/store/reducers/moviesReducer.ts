@@ -11,7 +11,6 @@ export type MovieResponseData = {
   total_results: number;
 };
 
-// type moviesAction = IRequestAction | IFeatureAction;
 
 export interface moviesState {
   movies: MovieResponseData;
@@ -49,8 +48,3 @@ export const getSearchTotalPage = (state: moviesState) => {
   const total_page = getSearchTotal(state);
   return total_page;
 };
-
-// export const getActualResultCount = (state: moviesState) => {
-//   const actual_results = getMovies(state);
-//   return actual_results.count();
-// };

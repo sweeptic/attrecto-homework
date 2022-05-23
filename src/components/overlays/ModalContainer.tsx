@@ -6,18 +6,19 @@ import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cleanDetail } from "store/actions/detail";
 import { removeNotification } from "store/actions/notification";
-import { getDetailRawData } from "store/reducers/detailReducer";
-import { getMessageRawData } from "store/reducers/notificationReducer";
+import { IDetailState, getDetailRawData } from "store/reducers/detailReducer";
+import { getMessageRawData, INotificationState } from "store/reducers/notificationReducer";
 
 const ModalContainer = forwardRef((_, inputRef: ForwardedRef<HTMLInputElement>) => {
   const dispatch = useDispatch();
-  const detail = useSelector((state) => getDetailRawData(state));
-  const messages = useSelector((state) => getMessageRawData(state));
+  const detail = useSelector((state: IDetailState) => getDetailRawData(state));
+  const messages = useSelector((state:  INotificationState ) => getMessageRawData(state));
   const [detailIsShown, setDetailIsShown] = useState(false);
   const [messageIsShown, setMessageIsShown] = useState(false);
   const errorMessage = "Something went wrong. Please try again later.";
 
   useEffect(() => {
+
     if (Object.keys(detail).length) {
       setDetailIsShown(true);
     } else {

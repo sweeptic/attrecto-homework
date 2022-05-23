@@ -41,7 +41,7 @@ export interface IRemoveNotificationAction {
 
 // action creators
 export const setNotification = ({ message, feature }: ISetNotification): ISetNotificationAction => {
-  console.log(message);
+
   const r = {
     type: `${feature} ${SET_NOTIFICATIONS}`,
     payload: message,

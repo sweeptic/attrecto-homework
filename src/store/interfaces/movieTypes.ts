@@ -1,8 +1,12 @@
+
+export type genre_ids = number[]
+
 export type moviesData = {
   adult: boolean;
   backdrop_path: string;
-  genre_ids: number[];
+  genre_ids: genre_ids;
   id: number;
+  name?: string;
   media_type: string;
   original_language: string;
   original_title: string;

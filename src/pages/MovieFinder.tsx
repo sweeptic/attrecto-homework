@@ -6,7 +6,7 @@ import Pagination from "components/pagination/Pagination";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGenres } from "store/actions/genre";
-import { getLoadingState } from "store/reducers/uiReducer";
+import { getLoadingState, uiState } from "store/reducers/uiReducer";
 
 // customize the InputFilter
 const inputFilterSetup = {
@@ -17,7 +17,7 @@ const inputFilterSetup = {
 
 const MovieFinder = () => {
   const [enteredFilter, setEnteredFilter] = useState("");
-  const spinner = useSelector((state) => getLoadingState(state));
+  const spinner = useSelector((state: uiState) => getLoadingState(state));
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
 

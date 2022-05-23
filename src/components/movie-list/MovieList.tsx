@@ -3,7 +3,9 @@ import { forwardedRefHelper } from "helpers/tsHelpers";
 import { ForwardedRef, forwardRef, Key, memo, ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "store/actions/detail";
-import { getSearchCount } from "store/reducers/moviesReducer";
+
+import { genresItem } from "store/reducers/genresReducer";
+import { getSearchCount, MovieResponseData } from "store/reducers/moviesReducer";
 import { getMoviesArray } from "store/selectors/feature_selectors";
 import { useAppSelector } from "store/store";
 
@@ -12,7 +14,7 @@ interface IMovieList {
 }
 
 const MovieList = forwardRef(({ waitForKey }: IMovieList, inputRef: ForwardedRef<HTMLInputElement>) => {
-  const moviesData = useSelector((state) => getMoviesArray(state));
+  const moviesData = useSelector((state: { movies: MovieResponseData; genres: { genres: genresItem[] } }) => getMoviesArray(state));
   const count = useAppSelector((state) => getSearchCount(state));
   const dispatch = useDispatch();
   const moviesList = getMoviesList();
@@ -23,6 +25,7 @@ const MovieList = forwardRef(({ waitForKey }: IMovieList, inputRef: ForwardedRef
   }
 
   function getMoviesList(): ReactNode[] {
+
     return moviesData.map((item: { id: Key | null | undefined }) => <MovieItem key={item.id} item={item} onDetails={onMovieSelectHandler} />);
   }
 

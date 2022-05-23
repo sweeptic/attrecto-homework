@@ -5,7 +5,7 @@ interface ISetLoader {
   state: boolean;
   feature: string;
 }
-interface ISetLoaderAction {
+export interface ISetLoaderAction {
   type: string;
   payload: boolean;
   meta: { feature: string };

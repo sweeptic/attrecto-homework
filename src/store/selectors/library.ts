@@ -1,12 +1,15 @@
-export function getMovieGenres(movieItem: any, genres: any) {
-  const catRes: any[] = [];
+import { genre_ids } from "store/interfaces/movieTypes";
+import { genresIdxS } from "store/reducers/genresReducer";
 
-  if (movieItem) {
-    movieItem.forEach((element: any) => {
+export function getMovieGenres(genreItem: genre_ids, genres: genresIdxS) {
+  const result: Array<string> = [];
+
+  if (genreItem) {
+    genreItem.forEach((element: number) => {
       const genre = genres[element];
-      genre && catRes.push(genre);
+      genre && result.push(genre);
     });
   }
 
-  return catRes.join(", ");
+  return result.join(", ");
 }
