@@ -8,7 +8,7 @@ const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const LANG = "en-US";
 
 export const genresMiddleware = () => (next: any) => (action: any) => {
-// console.log("ACTION", action);
+  console.log("ACTION", action);
 
   switch (action.type) {
     case FETCH_GENRES:

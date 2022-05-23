@@ -1,11 +1,16 @@
-import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
-import { CLEAN_DETAIL, DETAIL, FETCH_DETAIL, setDetail } from "store/actions/detail";
+import { AnyAction, Dispatch } from "redux";
+import { apiRequest, API_ERROR, API_SUCCESS, IApiRequestAction } from "store/actions/api";
+import { CLEAN_DETAIL, DETAIL, FETCH_DETAIL, IfetchDetailAction, setDetail } from "store/actions/detail";
 
 import { setNotification } from "store/actions/notification";
-import { setLoader } from "store/actions/ui";
+import { ISetLoaderAction, setLoader } from "store/actions/ui";
 
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const LANG = "en-US";
+
+type Action = Array<IApiRequestAction>;
+
+type nextAction = IfetchDetailAction;
 
 export const detailMiddleware = () => (next: any) => (action: any) => {
 //   console.log("ACTION", action);
@@ -33,11 +38,17 @@ export const detailMiddleware = () => (next: any) => (action: any) => {
       break;
 
     case `${DETAIL} ${API_SUCCESS}`:
-      next([setDetail({ movie: action.payload }), setLoader({ state: false, feature: DETAIL })]);
+          next([
+              setDetail({ movie: action.payload }),
+              setLoader({ state: false, feature: DETAIL })
+          ]);
       break;
 
     case `${DETAIL} ${API_ERROR}`:
-      next([setNotification({ message: action.payload, feature: DETAIL }), setLoader({ state: false, feature: DETAIL })]);
+          next([
+              setNotification({ message: action.payload, feature: DETAIL }),
+              setLoader({ state: false, feature: DETAIL })
+          ]);
       break;
 
     default:

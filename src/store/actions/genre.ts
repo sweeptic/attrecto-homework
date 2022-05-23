@@ -8,15 +8,16 @@ export const SET_GENRES = `${GENRES} SET`;
 interface IFetchGenre {
   query: string;
 }
-interface IFetchGenreAction {
+export interface IFetchGenreAction {
   payload: string;
   type: string;
 }
 
-interface ISetGenre {
+export interface ISetGenre {
   genres: genresResultData[];
 }
-interface ISetGenreAction {
+
+export interface ISetGenreAction {
   type: string;
   payload: {
     genres: genresResultData[];

@@ -1,32 +1,30 @@
 import { Dispatch } from "react";
-import { apiError, apiSuccess, API_REQUEST } from "store/actions/api";
-
-export interface IErrorObject {
-  response: string;
-  error: string;
-  feature: string;
-}
+import { AnyAction } from "redux";
+import { apiError, apiSuccess, API_REQUEST, IApiRequest } from "store/actions/api";
+import { invalid1 } from "store/actions/notification";
 
 export const apiMiddleware =
-  ({ dispatch }: { dispatch: Dispatch<any> }) =>
-  (next: Dispatch<any>) =>
-  (action: any) => {
-    // console.log("ACTION", action);
-
+  ({ dispatch }: { dispatch: Dispatch<AnyAction> }) =>
+  (next: Dispatch<AnyAction>) =>
+  (action: AnyAction) => {
     next(action);
     if (action.type.includes(API_REQUEST)) {
-      const { body, url, method, feature }: any = action.meta;
+      const { body, url, method, feature }: IApiRequest = action.meta;
 
-      fetchData({ url, body, method, feature, dispatch });
+      fetchData({ url, body, method, feature, dispatch }); 
     }
   };
 
-function fetchData({ url, body, method, feature, dispatch }: any): void {
+interface fetchDataParam extends IApiRequest {
+  dispatch: Dispatch<AnyAction>;
+}
+
+function fetchData({ url, body, method, feature, dispatch }: fetchDataParam): void {
   fetch(url, { body, method })
     .then((response) => response.json())
     .then((response) => {
       if (response.success === false) {
-        const error: any = {
+        const error: invalid1 = {
           response: response.status_code,
           error: response.status_message,
           feature: feature,
@@ -37,7 +35,7 @@ function fetchData({ url, body, method, feature, dispatch }: any): void {
       }
     })
     .catch((error_) => {
-      const error: any = error_.message;
+      const error: string = error_.message;
       dispatch(apiError({ error, feature }));
     });
 }

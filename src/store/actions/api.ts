@@ -4,14 +4,14 @@ export const API_SUCCESS = "API_SUCCESS";
 export const API_ERROR = "API_ERROR";
 import { genresResultData, moviesResultData, detailResultData } from "store/interfaces/movieTypes";
 
-interface IApiRequest {
+export interface IApiRequest {
   body: null;
   method: string;
   url: string;
   feature: string;
 }
 
-interface IApiRequestAction {
+export interface IApiRequestAction {
   type: string;
   payload: null;
   meta: {
@@ -27,7 +27,7 @@ interface IApiSuccess {
   feature: string;
 }
 
-interface IApiSuccessAction {
+export interface IApiSuccessAction {
   meta: { feature: string };
   type: string;
   payload: genresResultData | moviesResultData | detailResultData;
@@ -44,7 +44,7 @@ interface IApiError {
   feature: string;
 }
 
-interface IApiErrorAction {
+export interface IApiErrorAction {
   meta: { feature: string };
   payload: string | IErrorObject;
   type: string;

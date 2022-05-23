@@ -1,10 +1,11 @@
 import { Dispatch } from "react";
+import { AnyAction } from "redux";
 import { RootState } from "store/store";
 
 export const loggerMiddleware =
   ({ getState }: { getState: () => RootState }) =>
-  (next: Dispatch<any>) =>
-  (action: any) => {
+  (next: Dispatch<AnyAction>) =>
+  (action: AnyAction) => {
     const { NODE_ENV } = process.env;
 
     if (NODE_ENV === "development") {

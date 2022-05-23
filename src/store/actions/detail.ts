@@ -9,7 +9,8 @@ export const SET_DETAIL = `${DETAIL} SET`;
 interface IfetchDetail {
   query: string;
 }
-interface IfetchDetailAction {
+
+export interface IfetchDetailAction {
   type: string;
   payload: string;
 }
@@ -21,7 +22,7 @@ interface IcleanDetailAction {
 interface IsetDetail {
   movie: detailResultData | unknown;
 }
-interface IsetDetailAction {
+export interface ISetDetailAction {
   type: string;
   payload: detailResultData | unknown;
   meta: { feature: string };
@@ -37,7 +38,7 @@ export const cleanDetail = (): IcleanDetailAction => ({
   type: CLEAN_DETAIL,
 });
 
-export const setDetail = ({ movie }: IsetDetail): IsetDetailAction => ({
+export const setDetail = ({ movie }: IsetDetail): ISetDetailAction => ({
   type: SET_DETAIL,
   payload: movie,
   meta: { feature: DETAIL },

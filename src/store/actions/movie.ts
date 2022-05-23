@@ -11,7 +11,7 @@ interface IFetchMovies {
   query: string;
   page: number;
 }
-interface IFetchMoviesAction {
+export interface IFetchMoviesAction {
   payload: string;
   type: string;
   meta: {

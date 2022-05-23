@@ -5,7 +5,7 @@ export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
 export const REMOVE_NOTIFICATIONS = "REMOVE_NOTIFICATIONS";
 
 // TODO refactor
-interface invalid1 {
+export interface invalid1 {
   response: number;
   error: string;
   feature: string;

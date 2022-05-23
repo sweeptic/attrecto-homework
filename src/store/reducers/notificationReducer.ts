@@ -21,7 +21,7 @@ export const notificationReducer = (notifications: INotificationItems = initStat
   }
 };
 
-interface IUrlErrorMessage {
+export interface IEnrichedErrorMessage {
   id: number;
   message: string;
 }
@@ -32,7 +32,7 @@ interface IApierrorMessage {
   response: number;
 }
 
-type INotificationItems = Array<string | IUrlErrorMessage | IApierrorMessage>;
+type INotificationItems = Array<string | IEnrichedErrorMessage | IApierrorMessage>;
 
 export interface INotificationState {
   notifications: INotificationItems;
