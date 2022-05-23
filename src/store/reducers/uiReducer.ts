@@ -16,7 +16,7 @@ const initState = {
 export const uiReducer = (ui: uiStateData = initState, action: AnyAction) => {
   switch (true) {
     case action.type.includes(SET_LOADER):
-      return { ...ui, loading: action.payload };
+      return { ...ui, loading: action.payload } as uiStateData;
     default:
       return ui;
   }

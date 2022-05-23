@@ -4,11 +4,9 @@ import { REMOVE_NOTIFICATIONS, SET_NOTIFICATIONS } from "store/actions/notificat
 const initState: INotificationItems = [];
 
 export const notificationReducer = (notifications: INotificationItems = initState, action: AnyAction) => {
-//   console.log("initState", initState);
-
   switch (true) {
     case action.type.includes(SET_NOTIFICATIONS): {
-      const errList = [...notifications, action.payload];
+      const errList = [...notifications, action.payload] as INotificationItems;
 
       return errList;
     }

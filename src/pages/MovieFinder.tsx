@@ -4,9 +4,10 @@ import ModalContainer from "components/overlays/ModalContainer";
 import Spinner from "components/overlays/Spinner";
 import Pagination from "components/pagination/Pagination";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchGenres } from "store/actions/genre";
 import { getLoadingState, uiState } from "store/reducers/uiReducer";
+import { useAppDispatch } from "store/store";
 
 // customize the InputFilter
 const inputFilterSetup = {
@@ -18,7 +19,7 @@ const inputFilterSetup = {
 const MovieFinder = () => {
   const [enteredFilter, setEnteredFilter] = useState("");
   const spinner = useSelector((state: uiState) => getLoadingState(state));
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {

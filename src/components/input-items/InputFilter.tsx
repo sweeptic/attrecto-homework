@@ -1,7 +1,7 @@
 import { forwardedRefHelper } from "helpers/tsHelpers";
 import { Dispatch, ForwardedRef, forwardRef, SetStateAction, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { cleanMovies, fetchMovies } from "store/actions/movie";
+import { useAppDispatch } from "store/store";
 
 interface IInputFilter {
   waitForKey: number;
@@ -14,7 +14,7 @@ interface IInputFilter {
 const InputFilter = forwardRef(
   ({ waitForKey, waitForMsec, clearWhenDelete, setEnteredFilter, enteredFilter }: IInputFilter, inputRef: ForwardedRef<HTMLInputElement>) => {
     const [isCleaned, setIsCleaned] = useState(true);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
 

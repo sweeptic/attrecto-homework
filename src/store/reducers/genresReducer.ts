@@ -16,7 +16,7 @@ export interface genresItem {
 export const genresReducer = (genres: genresState = initState, action: AnyAction) => {
   switch (action.type) {
     case SET_GENRES:
-      return action.payload;
+      return action.payload as genresState;
 
     default:
       return genres;

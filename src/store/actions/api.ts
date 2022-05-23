@@ -2,6 +2,7 @@
 export const API_REQUEST = "API_REQUEST";
 export const API_SUCCESS = "API_SUCCESS";
 export const API_ERROR = "API_ERROR";
+import { Action } from "redux";
 import { genresResultData, moviesResultData, detailResultData } from "store/interfaces/movieTypes";
 
 export interface IApiRequest {
@@ -11,7 +12,7 @@ export interface IApiRequest {
   feature: string;
 }
 
-export interface IApiRequestAction {
+export interface IApiRequestAction extends Action {
   type: string;
   payload: null;
   meta: {
@@ -51,7 +52,7 @@ export interface IApiErrorAction {
 }
 
 //action creators
-export const apiRequest = ({ body, method, url, feature }: IApiRequest): IApiRequestAction => ({
+export const apiRequest = ({ body, method, url, feature }: IApiRequest): IApiRequestAction  => ({
   type: `${feature} ${API_REQUEST}`,
   payload: body,
   meta: { method, url, feature, body },

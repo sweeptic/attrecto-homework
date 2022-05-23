@@ -1,3 +1,4 @@
+import { AnyAction } from "redux";
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { FETCH_GENRES, GENRES, setGenres } from "store/actions/genre";
 
@@ -7,8 +8,8 @@ import { setLoader } from "store/actions/ui";
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 const LANG = "en-US";
 
-export const genresMiddleware = () => (next: any) => (action: any) => {
-  console.log("ACTION", action);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const genresMiddleware = () => (next: any) => (action: AnyAction) => {
 
   switch (action.type) {
     case FETCH_GENRES:

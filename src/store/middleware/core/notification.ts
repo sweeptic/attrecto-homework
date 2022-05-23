@@ -4,7 +4,6 @@ import { setNotification, SET_NOTIFICATIONS } from "store/actions/notification";
 import { IEnrichedErrorMessage } from "store/reducers/notificationReducer";
 
 export const notificationMiddleware = () => (next: Dispatch<AnyAction>) => (action: AnyAction) => {
-  // console.log("ACTION", action);
 
   if (action.type.includes(SET_NOTIFICATIONS)) {
     const { payload, meta } = action;

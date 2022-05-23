@@ -11,7 +11,6 @@ export type MovieResponseData = {
   total_results: number;
 };
 
-
 export interface moviesState {
   movies: MovieResponseData;
 }
@@ -19,9 +18,7 @@ export interface moviesState {
 export const moviesReducer = (movies: MovieResponseData = initMoviesState, action: AnyAction) => {
   switch (action.type) {
     case SET_MOVIES: {
-
-
-      return action.payload;
+      return action.payload as MovieResponseData;
     }
 
     default:
