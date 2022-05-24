@@ -1,0 +1,25 @@
+.movie-finder {
+  //   padding: 2rem;
+  margin: 2rem;
+}
+
+.pagination {
+  background-color: $light-grey;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  // border: lightblue;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  // // padding: ;
+
+  &__controllers {
+    margin-bottom: 0.5rem;
+    display: flex;
+    padding-bottom: 1rem;
+    justify-content: space-between;
+    > div {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+    }
+  }
+}

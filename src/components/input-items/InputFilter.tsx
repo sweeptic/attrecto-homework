@@ -12,12 +12,14 @@ interface IInputFilter {
 }
 
 const InputFilter = forwardRef(
-  ({ waitForKey, waitForMsec, clearWhenDelete, setEnteredFilter, enteredFilter }: IInputFilter, inputRef: ForwardedRef<HTMLInputElement>) => {
+  (
+    { waitForKey, waitForMsec, clearWhenDelete, setEnteredFilter, enteredFilter }: IInputFilter,
+    inputRef: ForwardedRef<HTMLInputElement>
+  ) => {
     const [isCleaned, setIsCleaned] = useState(true);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-
       if (enteredFilter.length >= waitForKey) {
         setIsCleaned(false);
         const timer = setTimeout(() => {
@@ -45,7 +47,12 @@ const InputFilter = forwardRef(
       }
     }, [inputRef]);
 
-    return <input ref={inputRef} type="text" value={enteredFilter} onChange={(event) => setEnteredFilter(event.target.value)} />;
+    return (
+      <form className="input-form">
+        <label>Search:</label>
+        <input ref={inputRef} type="text" value={enteredFilter} onChange={(event) => setEnteredFilter(event.target.value)} />
+      </form>
+    );
   }
 );
 

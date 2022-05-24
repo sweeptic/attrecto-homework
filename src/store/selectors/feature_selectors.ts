@@ -8,15 +8,23 @@ import { getMovieGenres } from "./library";
 export interface IGetMoviesArrayRes {
   id: number;
   title: string;
+  release_date: string;
   itemCategories: string;
   poster_path: string;
+}
+
+export interface IDetailRes extends IGetMoviesArrayRes {
+  overview?: string;
+  imdb_id?: string;
+  runtime?: number;
+  production_countries?: string;
 }
 
 export const getMoviesArray = createSelector(
   [getMovies, getGenresObject],
   (movies: moviesData[], genres: genresIdxS): IGetMoviesArrayRes[] => {
     return movies.reduce((movieArray: IGetMoviesArrayRes[] = [], item: moviesData) => {
-      const { id, title, name, poster_path } = item;
+      const { id, title, name, poster_path, release_date } = item;
       const itemCategories = getMovieGenres(item.genre_ids, genres);
 
       movieArray.push({
@@ -24,20 +32,13 @@ export const getMoviesArray = createSelector(
         title: title ?? name,
         itemCategories,
         poster_path: poster_path,
+        release_date,
       });
- 
+
       return movieArray;
     }, []);
   }
 );
-
-interface IDetailRes extends IGetMoviesArrayRes {
-  overview: string;
-  release_date: string;
-  imdb_id: string;
-  runtime: number;
-  production_countries: string;
-}
 
 export const getDetailObject = createSelector([getDetail], (detail) => {
   const resObj = {} as IDetailRes;

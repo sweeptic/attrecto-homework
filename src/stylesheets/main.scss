@@ -13,10 +13,10 @@
 @import "layout/header", "layout/footer";
 
 // 5. Components
-@import "components/button", "components/card", "components/loader", "components/backdrop", "components/movieItem";
+@import "components/button", "components/card", "components/loader", "components/backdrop", "components/movieItem", "components/inputFilter", "components/modal";
 
 // 6. Page-specific styles
-@import "pages/app";
+@import "pages/app", "pages/search-page";
 
 // 7. Themes
 @import "themes/default";

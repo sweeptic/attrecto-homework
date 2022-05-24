@@ -47,7 +47,7 @@ const ModalContainer = forwardRef((_, inputRef: ForwardedRef<HTMLInputElement>) 
 
   return (
     <div>
-      {detailIsShown && <ModalItem onClose={clearDetails} content={<MovieItem item={detail} Details={true} />} />}
+      {detailIsShown && <ModalItem onClose={clearDetails} content={<MovieItem item={detail} details={true} />} />}
       {messageIsShown && <ModalItem onClose={clearMessage} content={<ErrorItem message={errorMessage} />} />}
     </div>
   );

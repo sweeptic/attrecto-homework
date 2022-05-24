@@ -1,0 +1,31 @@
+.input-form {
+  margin-bottom: 1rem;
+  background-color: $light-grey;
+  padding:  1rem 0.5rem 1rem 0.5rem;
+  // height: 3rem;
+  //   width: 100%;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  // }
+
+  input {
+    margin-left: 0.5rem;
+    // border: none;
+    border-width: 0.5px;
+    box-shadow: none;
+    border-radius: 0.5rem;
+    flex: 1;
+    min-width: 0;
+    &:focus {
+      outline: none !important;
+    }
+    //   width: 100%;
+  }
+}
+
+.result {
+    padding:  1rem 0.5rem 1rem 0.5rem;
+    // background-color: lightblue;
+    border-radius: 0.5rem;
+}

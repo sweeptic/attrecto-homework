@@ -26,7 +26,7 @@ const MovieList = forwardRef(({ waitForKey }: IMovieList, inputRef: ForwardedRef
   }
 
   function getMoviesList(): ReactNode[] {
-    return moviesData.map((item) => <MovieItem key={item.id} item={item} onDetails={onMovieSelectHandler} />);
+    return moviesData.map((item) => <MovieItem key={item.id} item={item} onDetails={onMovieSelectHandler} details={false} />);
   }
 
   function getMovieListContent() {
@@ -34,11 +34,12 @@ const MovieList = forwardRef(({ waitForKey }: IMovieList, inputRef: ForwardedRef
       const inputLength = forwardedRefHelper(inputRef)?.value.length;
       let content: string | ReactNode[];
 
-      if (inputLength !== undefined && (inputLength < waitForKey || !inputLength)) {
+      if (!inputLength || (inputLength && inputLength < waitForKey)) {
         content = `Please enter at least ${waitForKey} letters.`;
       } else {
-        content = moviesList.length > 0 ? moviesList : "There are no search results.";
+        content = moviesList.length ? moviesList : "There are no search results.";
       }
+
       return content;
     }
     return getContent();
@@ -46,8 +47,8 @@ const MovieList = forwardRef(({ waitForKey }: IMovieList, inputRef: ForwardedRef
 
   return (
     <>
-      <span>{`${count} Search result(s)`}</span>
-      <div>{movieListContent}</div>
+      <span className="search-result">{`${count} Search result(s)`}</span>
+      <div className="list-content">{movieListContent}</div>
     </>
   );
 });

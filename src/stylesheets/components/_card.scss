@@ -1,6 +1,43 @@
 .card {
   margin-bottom: 12px;
-  background-color: lightslategrey;
+  background-color: $light-grey;
+  //   border: 1px solid black;
+  // height: ;
+  //   margin-left: 3rem;
+  //   margin-right: 3rem;
+  display: flex;
+  border-radius: 0.5rem;
+  //    border: 0 auto;
+  //    margin: 1rem;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  //   max-height: 20rem;
+
+  &__description-container {
+    //   width: 50%;
+    padding: 1rem;
+    // min-height: 15%;
+    // background-color: yellowgreen;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  &__picture-container {
+    // min-height: 85%;
+    border-radius: 0.5rem;
+    width: 100%;
+    height: auto;
+    padding: 0.3rem;
+  }
+
+  &__overview {
+    span {
+      font-weight: 600;
+    }
+  }
 
   //  @include respond(tab-land) {
   //       //width < 1200?
@@ -8,27 +45,19 @@
   //       background-color: darkcyan;
   //     }
 
-      @include respond(tab-port) {
-          height: 60rem;
+  //   @include respond(tab-port) {
+  // height: 60rem;
   //         //width < 900?
-        //   background-color: darkgreen;
+  //   background-color: darkgreen;
   //         font-size: 50%; //1rem = 8px, 8/16 = 50%
-      }
-  @include respond(phone) {
-    //       //width < 1200?
-    //       font-size: 50%; //1rem = 9px, 9/16 = 56.25%
-    //       background-color: lightpink;
-    // height: 30rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    display: flex;
-    flex-direction: column;
+  //   }
+  //   @include respond(phone) {
+  //       //width < 1200?
+  //       font-size: 50%; //1rem = 9px, 9/16 = 56.25%
+  //       background-color: lightpink;
+  // height: 30rem;
 
-    &__description-container {
-    //   width: 50%;
-      background-color: yellowgreen;
-    }
-  }
+  //   }
 
   //   @include respond(big-desktop) {
   //     background-color: darkorange;

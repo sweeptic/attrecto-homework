@@ -1,5 +1,6 @@
 .movieContainer {
   display: flex;
+  flex-direction: row;
 
   //  @include respond(tab-land) {
   //       //width < 1200?
@@ -12,12 +13,11 @@
   //         background-color: darkgreen;
   //         font-size: 50%; //1rem = 8px, 8/16 = 50%
   //     }
-  @include respond(phone) {
+//   @include respond(phone) {
     //       //width < 1200?
     //       font-size: 50%; //1rem = 9px, 9/16 = 56.25%
     //       background-color: lightpink;
-    flex-direction: row;
-  }
+//   }
 
   //   @include respond(big-desktop) {
   //     background-color: darkorange;

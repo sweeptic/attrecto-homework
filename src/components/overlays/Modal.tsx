@@ -5,16 +5,17 @@ interface IBackdrop {
 }
 
 const Backdrop = ({ onClose }: IBackdrop) => {
-  return <div className={"backdrop"} onClick={onClose} />;
+  return <div className="backdrop" onClick={onClose} />;
 };
 
 interface ModalOverlay {
   children?: React.ReactNode;
+  onClose: () => void;
 }
 
 const ModalOverlay = (props: ModalOverlay) => {
   return (
-    <div /*className={classes.modal}*/>
+    <div className="modal" onClick={props.onClose}>
       <div /*className={classes.content}*/>{props.children}</div>
     </div>
   );
@@ -30,8 +31,8 @@ const portalElement = document.getElementById("overlays");
 const Modal = (props: IModal) => {
   return (
     <>
-      {portalElement ? createPortal(<Backdrop onClose={props.onClose} />, portalElement) : null}
-      {portalElement ? createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement) : null}
+      {/* {portalElement ? createPortal(<Backdrop onClose={props.onClose} />, portalElement) : null} */}
+      {portalElement ? createPortal(<ModalOverlay onClose={props.onClose}>{props.children}</ModalOverlay>, portalElement) : null}
     </>
   );
 };

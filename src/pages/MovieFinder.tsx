@@ -32,15 +32,11 @@ const MovieFinder = () => {
   }
 
   return (
-    <section>
+    <section className="movie-finder">
       <Spinner isLoading={spinner.loading} />
       <ModalContainer ref={inputRef} />
-      <div>
-        <InputFilter {...inputFilterSetup} ref={inputRef} enteredFilter={enteredFilter} setEnteredFilter={setEnteredFilter} />
-      </div>
-      <div>
-        <Pagination enteredFilter={enteredFilter} />
-      </div>
+      <InputFilter {...inputFilterSetup} ref={inputRef} enteredFilter={enteredFilter} setEnteredFilter={setEnteredFilter} />
+      <Pagination enteredFilter={enteredFilter} />
       <article className="result">
         <MovieList waitForKey={inputFilterSetup.waitForKey} ref={inputRef} />
       </article>

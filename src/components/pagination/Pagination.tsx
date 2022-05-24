@@ -22,10 +22,10 @@ const Pagination = (enteredFilter: IPagination) => {
 
   if (count > 0) {
     return (
-      <div>
-        <div>
-          <span onClick={onPrevHandler}>{"<< prev   "}</span>
-          <span onClick={onNextHandler}>{"   next >>"}</span>
+      <div className="pagination">
+        <div className="pagination__controllers">
+          <div onClick={onPrevHandler}>{"<< Previous Page"}</div>
+          <div onClick={onNextHandler}>{"Next Page >>"}</div>
         </div>
         <div>
           <span>{`Page ${actual} of ${total}`}</span>

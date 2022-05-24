@@ -1,0 +1,68 @@
+.modal {
+  display: flex;
+  height: 100%;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  // padding-top: 10rem;
+  // padding-bottom: 10rem;
+  width: 100%;
+  backdrop-filter: blur(5px);
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100vh;
+  //   background-color: white;
+  //   padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+  //   animation: slide-down 300ms ease-out forwards;
+
+  //   background-color: rgba(0, 0, 0, 0.75);
+
+  .card {
+    background-color: $light-grey;
+    //   padding: 5rem;
+    margin: 1rem;
+    flex-direction: row;
+    //   height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    &__detail {
+      display: flex;
+    }
+
+    &__description-container {
+      background-color: $light-grey;
+      //   padding: 1rem;
+      border-radius: 0 0.5rem  0 0 ;
+      border-left: 1px solid $dark-grey;
+    }
+
+    &__overview {
+      padding: 1rem;
+      border-top: 1px solid $dark-grey;
+    }
+
+    &__picture-container {
+      //   background-color: yellowgreen;
+      border-radius: 0.5rem 0 0 0 ;
+      width: 50%;
+      padding:0
+    }
+  }
+}
+
+.proba {
+  background-color: $dark-grey;
+  padding: 3rem;
+  margin: 2rem;
+  border-radius: 0.5rem;
+  color: $light-grey;
+  // display: flex;
+}
