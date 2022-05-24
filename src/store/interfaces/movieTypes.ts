@@ -1,5 +1,4 @@
-
-export type genre_ids = number[]
+export type genre_ids = number[];
 
 export type moviesData = {
   adult: boolean;
@@ -20,11 +19,18 @@ export type moviesData = {
   vote_count: number;
 };
 
-export type genresResultData = {
-  genres: {
+type TGenres = {
+  id: number;
+  name: string;
+};
+
+type TCountries = {
     id: number;
-    name: string;
-  };
+    name: string
+}
+
+export type genresResultData = {
+  genres: TGenres;
 };
 
 export type moviesResultData = {
@@ -39,7 +45,7 @@ export type detailResultData = {
   backdrop_path: null | string;
   belongs_to_collection: null | string;
   budget: number;
-  genres: genresResultData[];
+  genres: TGenres[];
   homepage: null | string;
   id: number;
   imdb_id: string;
@@ -49,7 +55,7 @@ export type detailResultData = {
   popularity: number;
   poster_path: string;
   production_companies: unknown[];
-  production_countries: unknown[];
+  production_countries: TCountries[];
   release_date: number;
   revenue: number;
   runtime: number;

@@ -6,13 +6,14 @@ import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { cleanDetail } from "store/actions/detail";
 import { removeNotification } from "store/actions/notification";
-import { IDetailState, getDetailRawData } from "store/reducers/detailReducer";
+import { IDetailState } from "store/reducers/detailReducer";
 import { getMessageRawData, INotificationState } from "store/reducers/notificationReducer";
+import { getDetailObject } from "store/selectors/feature_selectors";
 import { useAppDispatch } from "store/store";
 
 const ModalContainer = forwardRef((_, inputRef: ForwardedRef<HTMLInputElement>) => {
   const dispatch = useAppDispatch();
-  const detail = useSelector((state: IDetailState) => getDetailRawData(state));
+  const detail = useSelector((state: IDetailState) => getDetailObject(state));
   const messages = useSelector((state: INotificationState) => getMessageRawData(state));
   const [detailIsShown, setDetailIsShown] = useState(false);
   const [messageIsShown, setMessageIsShown] = useState(false);

@@ -17,9 +17,10 @@ export const detailReducer = (detail: detailResultData | never = initState, acti
   }
 };
 
-const getDetail = (state: IDetailState) => state.detail;
+export const getDetail = (state: IDetailState) => state.detail;
 
 export const getDetailRawData = (state: IDetailState) => {
   const detail = getDetail(state);
+
   return detail;
 };

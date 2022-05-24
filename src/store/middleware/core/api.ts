@@ -22,7 +22,9 @@ interface fetchDataParam extends IApiRequest {
 function fetchData({ url, body, method, feature, dispatch }: fetchDataParam): void {
   fetch(url, { body, method })
     .then((response) => response.json())
-    .then((response) => {
+      .then((response) => {
+        console.log('fetch', response);
+        
       if (response.success === false) {
         const error: invalid1 = {
           response: response.status_code,

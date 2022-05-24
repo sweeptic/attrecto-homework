@@ -13,17 +13,16 @@ const MovieItem = ({ item, onDetails, Details }: IMovieItem) => {
 
   return (
     <div className="card" onClick={onDetailHandler}>
-      <div>
-        <h4>
-          {item.title}, {item.id}
-        </h4>
+      <div className="card__description-container">
+        <div>{item.title}</div>
+        <div>
+          <span>{item.overview}</span>
+        </div>
+        <div>
+          <span>{item.itemCategories}</span>
+        </div>
       </div>
-      <div>
-        <span>{item.overview}</span>
-      </div>
-      <div>
-        <h5>{item.itemCategories}</h5>
-      </div>
+      <div className="picture-container">{/* <img src={`${item.}`} alt="Italian Trulli"></img> */}</div>
     </div>
   );
 };
