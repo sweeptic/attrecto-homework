@@ -1,5 +1,6 @@
 import MovieItem from "components/movie-item/MovieItem";
 import { forwardedRefHelper } from "helpers/tsHelpers";
+
 import { ForwardedRef, forwardRef, memo, ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "store/actions/detail";
@@ -7,7 +8,7 @@ import { genresItem } from "store/reducers/genresReducer";
 import { getSearchCount, MovieResponseData } from "store/reducers/moviesReducer";
 import { getMoviesArray } from "store/selectors/feature_selectors";
 import { useAppSelector } from "store/store";
-
+//
 interface IMovieList {
   waitForKey: number;
 }
@@ -48,7 +49,9 @@ const MovieList = forwardRef(({ waitForKey }: IMovieList, inputRef: ForwardedRef
   return (
     <>
       <span className="search-result">{`${count} Search result(s)`}</span>
-      <div className="list-content">{movieListContent}</div>
+      <div id="list-content" className="list-content">
+        {movieListContent}
+      </div>
     </>
   );
 });

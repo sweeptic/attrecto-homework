@@ -2,6 +2,7 @@ import ModalItem from "components/detail-item/ModalItem";
 import ErrorItem from "components/error-item/ErrorItem";
 import MovieItem from "components/movie-item/MovieItem";
 import { forwardedRefHelper } from "helpers/tsHelpers";
+import { getScrollPosition, usePageLastPosition } from "hooks/usePageLastPosition";
 import { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { cleanDetail } from "store/actions/detail";
@@ -12,6 +13,7 @@ import { getDetailObject } from "store/selectors/feature_selectors";
 import { useAppDispatch } from "store/store";
 
 const ModalContainer = forwardRef((_, inputRef: ForwardedRef<HTMLInputElement>) => {
+  usePageLastPosition();
   const dispatch = useAppDispatch();
   const detail = useSelector((state: IDetailState) => getDetailObject(state));
   const messages = useSelector((state: INotificationState) => getMessageRawData(state));
@@ -35,14 +37,29 @@ const ModalContainer = forwardRef((_, inputRef: ForwardedRef<HTMLInputElement>) 
     }
   }, [messages]);
 
+  function setLastPosition() {
+    window.scrollTo({
+      top: getScrollPosition(),
+      behavior: "auto",
+    });
+  }
+
   function clearDetails() {
+    console.log("click");
+
+    //   document.querySelector("movie-finder")?.scrollTo({top: 5000 });
+    //   window.scrollTo(2000, 0);
+    //   console.log('document.getElementById("movie-finder")', document.getElementById("movie-finder"));
+
     dispatch(cleanDetail());
     forwardedRefHelper(inputRef)?.focus();
+    setLastPosition();
   }
 
   function clearMessage() {
     dispatch(removeNotification());
     forwardedRefHelper(inputRef)?.focus();
+    setLastPosition();
   }
 
   return (

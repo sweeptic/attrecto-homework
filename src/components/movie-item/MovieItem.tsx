@@ -1,3 +1,4 @@
+import { useDisableBodyScroll } from "hooks/useDisableBodyScroll";
 import { IDetailRes, IGetMoviesArrayRes } from "store/selectors/feature_selectors";
 
 interface IMovieItem {

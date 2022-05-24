@@ -40,7 +40,7 @@
     &__description-container {
       background-color: $light-grey;
       //   padding: 1rem;
-      border-radius: 0 0.5rem  0 0 ;
+      border-radius: 0 0.5rem 0 0;
       border-left: 1px solid $dark-grey;
     }
 
@@ -51,9 +51,9 @@
 
     &__picture-container {
       //   background-color: yellowgreen;
-      border-radius: 0.5rem 0 0 0 ;
+      border-radius: 0.5rem 0 0 0;
       width: 50%;
-      padding:0
+      padding: 0;
     }
   }
 }

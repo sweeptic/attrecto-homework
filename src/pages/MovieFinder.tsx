@@ -32,7 +32,7 @@ const MovieFinder = () => {
   }
 
   return (
-    <section className="movie-finder">
+    <section id="movie-finder" className="movie-finder">
       <Spinner isLoading={spinner.loading} />
       <ModalContainer ref={inputRef} />
       <InputFilter {...inputFilterSetup} ref={inputRef} enteredFilter={enteredFilter} setEnteredFilter={setEnteredFilter} />
