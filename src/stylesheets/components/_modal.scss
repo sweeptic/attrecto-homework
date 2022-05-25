@@ -20,7 +20,6 @@
     display: flex;
     flex-direction: column;
     cursor: default;
-    // box-shadow: 5px 10px #888888;
 
     @include devices(tab-port) {
       width: 90%;
@@ -57,7 +56,7 @@
   }
 }
 
-.proba {
+.error-item {
   background-color: $dark-grey;
   padding: 3rem;
   margin: 2rem;

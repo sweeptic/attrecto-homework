@@ -1,5 +1,10 @@
 import { AnyAction } from "redux";
-import { REMOVE_NOTIFICATIONS, SET_NOTIFICATIONS } from "store/actions/notification";
+import {
+  IFetchingErrorMessage,
+  IOriginalErrorMessage,
+  REMOVE_NOTIFICATIONS,
+  SET_NOTIFICATIONS,
+} from "store/actions/notification";
 
 const initState: INotificationItems = [];
 
@@ -19,18 +24,7 @@ export const notificationReducer = (notifications: INotificationItems = initStat
   }
 };
 
-export interface IEnrichedErrorMessage {
-  id: number;
-  message: string;
-}
-
-interface IApierrorMessage {
-  error: string;
-  feature: string;
-  response: number;
-}
-
-type INotificationItems = Array<string | IEnrichedErrorMessage | IApierrorMessage>;
+type INotificationItems = Array<string | IFetchingErrorMessage | IOriginalErrorMessage>;
 
 export interface INotificationState {
   notifications: INotificationItems;

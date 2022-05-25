@@ -1,22 +1,7 @@
 .list-content {
-  //   @include respond(tab-land) {
-  // display: flex;
-  //       //width < 1200?
-  //       font-size: 56.25%; //1rem = 9px, 9/16 = 56.25%
-  //   }
-
   @include devices(tab-port) {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    // code set for tablet
-
-}
-}
-
-.list-content::after {
-    // background-color: yellowgreen;
-//   content: "";
-//   flex: auto;
-//   justify-content: start;
+  }
 }

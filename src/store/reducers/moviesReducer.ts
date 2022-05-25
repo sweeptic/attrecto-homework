@@ -1,24 +1,24 @@
 import { AnyAction } from "redux";
 import { SET_MOVIES } from "store/actions/movie";
-import { moviesData } from "store/interfaces/movieTypes";
+import { TMoviesAppData } from "store/interfaces/movieTypes";
 
-export const initMoviesState: MovieResponseData = { results: [], total_results: 0, page: 0, total_pages: 0 };
+export const initMoviesState: TMovieResponseData = { results: [], total_results: 0, page: 0, total_pages: 0 };
 
-export type MovieResponseData = {
+export type TMovieResponseData = {
   page: number;
-  results: moviesData[] | [];
+  results: TMoviesAppData[] | [];
   total_pages: number;
   total_results: number;
 };
 
-export interface moviesState {
-  movies: MovieResponseData;
+export interface IMoviesState {
+  movies: TMovieResponseData;
 }
 
-export const moviesReducer = (movies: MovieResponseData = initMoviesState, action: AnyAction) => {
+export const moviesReducer = (movies: TMovieResponseData = initMoviesState, action: AnyAction) => {
   switch (action.type) {
     case SET_MOVIES: {
-      return action.payload as MovieResponseData;
+      return action.payload as TMovieResponseData;
     }
 
     default:
@@ -26,22 +26,22 @@ export const moviesReducer = (movies: MovieResponseData = initMoviesState, actio
   }
 };
 
-export const getMovies = (state: moviesState) => state.movies.results;
-export const getSearchResults = (state: moviesState) => state.movies.total_results;
-export const getSearchPage = (state: moviesState) => state.movies.page;
-export const getSearchTotal = (state: moviesState) => state.movies.total_pages;
+export const getMovies = (state: IMoviesState) => state.movies.results;
+export const getSearchResults = (state: IMoviesState) => state.movies.total_results;
+export const getSearchPage = (state: IMoviesState) => state.movies.page;
+export const getSearchTotal = (state: IMoviesState) => state.movies.total_pages;
 
-export const getSearchCount = (state: moviesState) => {
+export const getSearchCount = (state: IMoviesState) => {
   const count = getSearchResults(state);
   return count;
 };
 
-export const getSearchActualPage = (state: moviesState) => {
+export const getSearchActualPage = (state: IMoviesState) => {
   const actual_page = getSearchPage(state);
   return actual_page;
 };
 
-export const getSearchTotalPage = (state: moviesState) => {
+export const getSearchTotalPage = (state: IMoviesState) => {
   const total_page = getSearchTotal(state);
   return total_page;
 };

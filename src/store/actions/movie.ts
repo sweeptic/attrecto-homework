@@ -1,5 +1,5 @@
 
-import { moviesResultData } from "store/interfaces/movieTypes";
+import { TMoviesFetchData } from "store/interfaces/movieTypes";
 export const MOVIES = "[Movies]";
 
 //action types
@@ -20,11 +20,11 @@ export interface IFetchMoviesAction {
 }
 
 interface ISetMovies {
-  movies: moviesResultData;
+  movies: TMoviesFetchData;
 }
 interface ISetMoviesAction {
   meta: { feature: string };
-  payload: moviesResultData;
+  payload: TMoviesFetchData;
   type: string;
 }
 

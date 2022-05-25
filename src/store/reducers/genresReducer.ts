@@ -4,33 +4,33 @@ import { SET_GENRES } from "store/actions/genre";
 
 const initState = {} as never;
 
-interface genresState {
-  genres: { genres: genresItem[] };
+interface IGenresState {
+  genres: { genres: TGenresItem[] };
 }
 
-export interface genresItem {
+export interface TGenresItem {
   id: number;
   name: string;
 }
 
-export const genresReducer = (genres: genresState = initState, action: AnyAction) => {
+export const genresReducer = (genres: IGenresState = initState, action: AnyAction) => {
   switch (action.type) {
     case SET_GENRES:
-      return action.payload as genresState;
+      return action.payload as IGenresState;
 
     default:
       return genres;
   }
 };
 
-const getGenres = (state: genresState) => state.genres.genres;
+const getGenres = (state: IGenresState) => state.genres.genres;
 
-export interface genresIdxS {
+export interface IGenresIndex {
   [key: string]: string;
 }
 
-export const getGenresObject = createSelector(getGenres, (genre: genresItem[]) => {
-  return genre?.reduce((acc: genresIdxS, item: genresItem) => {
+export const getGenresObject = createSelector(getGenres, (genre: TGenresItem[]) => {
+  return genre?.reduce((acc: IGenresIndex, item: TGenresItem) => {
     acc[item["id"]] = item.name;
     return acc;
   }, {});

@@ -1,9 +1,9 @@
-export type genre_ids = number[];
+export type TGenre_ids = number[];
 
-export type moviesData = {
+export type TMoviesAppData = {
   adult: boolean;
   backdrop_path: string;
-  genre_ids: genre_ids;
+  genre_ids: TGenre_ids;
   id: number;
   name?: string;
   media_type: string;
@@ -29,18 +29,18 @@ type TCountries = {
     name: string
 }
 
-export type genresResultData = {
+export type TGenresFetchData = {
   genres: TGenres;
 };
 
-export type moviesResultData = {
+export type TMoviesFetchData = {
   page: number;
   total_pages: number;
   total_results: number;
-  results: moviesData[];
+  results: TMoviesAppData[];
 };
 
-export type detailResultData = {
+export type TDetailFetchData = {
   adult: number;
   backdrop_path: null | string;
   belongs_to_collection: null | string;

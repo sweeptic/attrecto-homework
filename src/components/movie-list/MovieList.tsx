@@ -1,20 +1,19 @@
 import MovieItem from "components/movie-item/MovieItem";
 import { forwardedRefHelper } from "helpers/tsHelpers";
-
 import { ForwardedRef, forwardRef, memo, ReactNode } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetail } from "store/actions/detail";
-import { genresItem } from "store/reducers/genresReducer";
-import { getSearchCount, MovieResponseData } from "store/reducers/moviesReducer";
+import { TGenresItem } from "store/reducers/genresReducer";
+import { getSearchCount, TMovieResponseData } from "store/reducers/moviesReducer";
 import { getMoviesArray } from "store/selectors/feature_selectors";
 import { useAppSelector } from "store/store";
-//
+
 interface IMovieList {
   waitForKey: number;
 }
 
 const MovieList = forwardRef(({ waitForKey }: IMovieList, inputRef: ForwardedRef<HTMLInputElement>) => {
-  const moviesData = useSelector((state: { movies: MovieResponseData; genres: { genres: genresItem[] } }) =>
+  const moviesData = useSelector((state: { movies: TMovieResponseData; genres: { genres: TGenresItem[] } }) =>
     getMoviesArray(state)
   );
   const count = useAppSelector((state) => getSearchCount(state));
@@ -49,9 +48,7 @@ const MovieList = forwardRef(({ waitForKey }: IMovieList, inputRef: ForwardedRef
   return (
     <>
       <span className="search-result">{`${count} Search result(s)`}</span>
-      <div className="list-content">
-        {movieListContent}
-      </div>
+      <div className="list-content">{movieListContent}</div>
     </>
   );
 });

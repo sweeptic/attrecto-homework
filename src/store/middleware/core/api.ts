@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { Middleware } from "redux";
 import { apiError, apiSuccess, API_REQUEST, IApiErrorAction, IApiRequest, IApiSuccessAction } from "store/actions/api";
-import { invalid1 } from "store/actions/notification";
+import { IOriginalErrorMessage } from "store/actions/notification";
 
 export const apiMiddleware: Middleware =
   ({ dispatch }) =>
@@ -22,11 +22,9 @@ interface fetchDataParam extends IApiRequest {
 function fetchData({ url, body, method, feature, dispatch }: fetchDataParam): void {
   fetch(url, { body, method })
     .then((response) => response.json())
-      .then((response) => {
-        console.log('fetch', response);
-        
+    .then((response) => {
       if (response.success === false) {
-        const error: invalid1 = {
+        const error: IOriginalErrorMessage = {
           response: response.status_code,
           error: response.status_message,
           feature: feature,

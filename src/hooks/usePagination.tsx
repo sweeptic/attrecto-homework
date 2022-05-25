@@ -10,10 +10,10 @@ interface IusePagination {
 
 function usePagination(enteredFilter: IusePagination) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isPaginationEnabled, setPaginationEnabled] = useState(false);
   const dispatch = useDispatch();
   const maxPage = useAppSelector((state) => getSearchTotalPage(state));
   const SearchResults = useAppSelector((state) => getSearchResults(state));
-  const [isPaginationEnabled, setPaginationEnabled] = useState(false);
 
   function next() {
     setCurrentPage((currentPage) => Math.min(currentPage + 1, maxPage));

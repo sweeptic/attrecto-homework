@@ -1,0 +1,22 @@
+.pagination {
+  background-color: $light-grey;
+  padding: 1rem 0.5rem 0.5rem 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  &__controllers {
+    margin-bottom: 0.5rem;
+    display: flex;
+    padding-bottom: 1rem;
+    justify-content: space-between;
+    > div {
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+    }
+  }
+}

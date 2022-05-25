@@ -1,17 +1,17 @@
 import { AnyAction } from "redux";
 import { SET_DETAIL } from "store/actions/detail";
-import { detailResultData } from "store/interfaces/movieTypes";
+import { TDetailFetchData } from "store/interfaces/movieTypes";
 
 const initState = {} as never;
 
 export interface IDetailState {
-  detail: never | detailResultData;
+  detail: never | TDetailFetchData;
 }
 
-export const detailReducer = (detail: detailResultData | never = initState, action: AnyAction) => {
+export const detailReducer = (detail: TDetailFetchData | never = initState, action: AnyAction) => {
   switch (action.type) {
     case SET_DETAIL:
-      return action.payload as detailResultData;
+      return action.payload as TDetailFetchData;
     default:
       return detail as never;
   }

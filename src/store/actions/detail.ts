@@ -1,44 +1,47 @@
-import { detailResultData } from "store/interfaces/movieTypes";
-export const DETAIL = "[Detail]";
+import { TDetailFetchData } from "store/interfaces/movieTypes";
 
+export const DETAIL = "[Detail]";
 //action types
 export const FETCH_DETAIL = `${DETAIL} FETCH`;
 export const CLEAN_DETAIL = `${DETAIL} CLEAN`;
 export const SET_DETAIL = `${DETAIL} SET`;
 
-interface IfetchDetail {
+interface IFetchDetail {
   query: string;
 }
 
-export interface IfetchDetailAction {
+export interface IFetchDetailAction {
   type: string;
   payload: string;
 }
 
-interface IcleanDetailAction {
+interface ICleanDetailAction {
   type: string;
 }
 
-interface IsetDetail {
-  movie: detailResultData | unknown;
+type TMovieState = TDetailFetchData | unknown;
+
+interface ISetDetail {
+  movie: TMovieState;
 }
+
 export interface ISetDetailAction {
   type: string;
-  payload: detailResultData | unknown;
+  payload: TMovieState;
   meta: { feature: string };
 }
 
 //action creators
-export const fetchDetail = ({ query }: IfetchDetail): IfetchDetailAction => ({
+export const fetchDetail = ({ query }: IFetchDetail): IFetchDetailAction => ({
   type: FETCH_DETAIL,
   payload: query,
 });
 
-export const cleanDetail = (): IcleanDetailAction => ({
+export const cleanDetail = (): ICleanDetailAction => ({
   type: CLEAN_DETAIL,
 });
 
-export const setDetail = ({ movie }: IsetDetail): ISetDetailAction => ({
+export const setDetail = ({ movie }: ISetDetail): ISetDetailAction => ({
   type: SET_DETAIL,
   payload: movie,
   meta: { feature: DETAIL },

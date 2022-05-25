@@ -1,5 +1,5 @@
 import Modal from "components/overlays/Modal";
-import { useEffect } from "react";
+import { useDisableBodyScroll } from "hooks/useDisableBodyScroll";
 
 interface IModalItem {
   content: JSX.Element;
@@ -7,12 +7,7 @@ interface IModalItem {
 }
 
 const ModalItem = ({ content, onClose }: IModalItem) => {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, []);
+  useDisableBodyScroll();
 
   return (
     <Modal onClose={onClose}>

@@ -1,4 +1,4 @@
-import { genresResultData } from "store/interfaces/movieTypes";
+import { TGenresFetchData } from "store/interfaces/movieTypes";
 export const GENRES = "[Genres]";
 
 //action types
@@ -14,13 +14,13 @@ export interface IFetchGenreAction {
 }
 
 export interface ISetGenre {
-  genres: genresResultData[];
+  genres: TGenresFetchData[];
 }
 
 export interface ISetGenreAction {
   type: string;
   payload: {
-    genres: genresResultData[];
+    genres: TGenresFetchData[];
   };
   meta: {
     feature: string;

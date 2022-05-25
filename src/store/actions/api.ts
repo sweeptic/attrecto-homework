@@ -1,9 +1,8 @@
+import { TGenresFetchData, TMoviesFetchData, TDetailFetchData } from "store/interfaces/movieTypes";
 // action_types;
 export const API_REQUEST = "API_REQUEST";
 export const API_SUCCESS = "API_SUCCESS";
 export const API_ERROR = "API_ERROR";
-import { Action } from "redux";
-import { genresResultData, moviesResultData, detailResultData } from "store/interfaces/movieTypes";
 
 export interface IApiRequest {
   body: null;
@@ -12,26 +11,21 @@ export interface IApiRequest {
   feature: string;
 }
 
-export interface IApiRequestAction extends Action {
+export interface IApiRequestAction {
   type: string;
   payload: null;
-  meta: {
-    body: null;
-    method: string;
-    url: string;
-    feature: string;
-  };
+  meta: IApiRequest;
 }
 
 interface IApiSuccess {
-  response: genresResultData | moviesResultData | detailResultData;
+  response: TGenresFetchData | TMoviesFetchData | TDetailFetchData;
   feature: string;
 }
 
 export interface IApiSuccessAction {
-  meta: { feature: string };
   type: string;
-  payload: genresResultData | moviesResultData | detailResultData;
+  payload: TGenresFetchData | TMoviesFetchData | TDetailFetchData;
+  meta: { feature: string };
 }
 
 interface IErrorObject {
@@ -46,13 +40,13 @@ interface IApiError {
 }
 
 export interface IApiErrorAction {
-  meta: { feature: string };
-  payload: string | IErrorObject;
   type: string;
+  payload: string | IErrorObject;
+  meta: { feature: string };
 }
 
 //action creators
-export const apiRequest = ({ body, method, url, feature }: IApiRequest): IApiRequestAction  => ({
+export const apiRequest = ({ body, method, url, feature }: IApiRequest): IApiRequestAction => ({
   type: `${feature} ${API_REQUEST}`,
   payload: body,
   meta: { method, url, feature, body },

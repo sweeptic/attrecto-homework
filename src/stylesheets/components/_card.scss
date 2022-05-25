@@ -1,40 +1,30 @@
 .card {
   margin-bottom: 12px;
   background-color: $light-grey;
-  //   border: 1px solid black;
-  // height: ;
-  //   margin-left: 3rem;
-  //   margin-right: 3rem;
+
   display: flex;
   border-radius: 0.5rem;
-//   margin: 12px;
-//   margin-left: 10px;
-//    margin-right: 10px;
-  //    border: 0 auto;
-  //    margin: 1rem;
+
   cursor: pointer;
   flex-direction: column;
   justify-content: space-between;
-    // min-height: 570px;
-    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
-   @include devices(tab-port) {
-       width: 48%;
-    }
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
-     @include devices(tab-land) {
-       width: 32%;
-    }
+  @include devices(tab-port) {
+    width: 48%;
+  }
 
-     @include devices(normal) {
-       width: 24%;
-    }
+  @include devices(tab-land) {
+    width: 32%;
+  }
+
+  @include devices(normal) {
+    width: 24%;
+  }
 
   &__description-container {
-    //   width: 50%;
     padding: 1rem;
-    // min-height: 15%;
-    // background-color: yellowgreen;
 
     span {
       font-weight: 600;
@@ -42,7 +32,6 @@
   }
 
   &__picture-container {
-    // min-height: 85%;
     border-radius: 0.5rem;
     width: 100%;
     height: auto;
@@ -54,29 +43,4 @@
       font-weight: 600;
     }
   }
-
-  //  @include respond(tab-land) {
-  //       //width < 1200?
-  //       font-size: 56.25%; //1rem = 9px, 9/16 = 56.25%
-  //       background-color: darkcyan;
-  //     }
-
-  //   @include respond(tab-port) {
-  // height: 60rem;
-  //         //width < 900?
-  //   background-color: darkgreen;
-  //         font-size: 50%; //1rem = 8px, 8/16 = 50%
-  //   }
-  //   @include respond(phone) {
-  //       //width < 1200?
-  //       font-size: 50%; //1rem = 9px, 9/16 = 56.25%
-  //       background-color: lightpink;
-  // height: 30rem;
-
-  //   }
-
-  //   @include respond(big-desktop) {
-  //     background-color: darkorange;
-  //     font-size: 75%; //1rem = 12px, 12/16 = 75%
-  //   }
 }

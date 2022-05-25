@@ -1,6 +1,6 @@
 import { Middleware } from "redux";
-import { setNotification, SET_NOTIFICATIONS } from "store/actions/notification";
-import { IEnrichedErrorMessage } from "store/reducers/notificationReducer";
+import { IEnrichedErrorMessage, setNotification, SET_NOTIFICATIONS } from "store/actions/notification";
+
 
 export const notificationMiddleware: Middleware = () => (next) => (action) => {
   if (action.type.includes(SET_NOTIFICATIONS)) {

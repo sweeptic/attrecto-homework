@@ -1,7 +1,6 @@
 import { Middleware } from "redux";
 import { apiRequest, API_ERROR, API_SUCCESS } from "store/actions/api";
 import { FETCH_GENRES, GENRES, setGenres } from "store/actions/genre";
-
 import { setNotification } from "store/actions/notification";
 import { setLoader } from "store/actions/ui";
 
