@@ -10,6 +10,7 @@
   &__controllers {
     margin-bottom: 0.5rem;
     display: flex;
+    user-select: none;
     padding-bottom: 1rem;
     justify-content: space-between;
     > div {
