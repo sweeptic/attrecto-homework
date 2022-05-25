@@ -1,5 +1,4 @@
-import { useDisableBodyScroll } from "hooks/useDisableBodyScroll";
-import { IDetailRes, IGetMoviesArrayRes } from "store/selectors/feature_selectors";
+import { IDetailRes } from "store/selectors/feature_selectors";
 
 interface IMovieItem {
   item: IDetailRes;
@@ -15,7 +14,7 @@ const MovieItem = ({ item, onDetails, details: details }: IMovieItem) => {
   }
 
   function getPictureUrl(poster_path: string) {
-    return poster_path ? `https://image.tmdb.org/t/p/w300_and_h450_bestv2/${item.poster_path}` : undefined;
+    return poster_path ? `https://image.tmdb.org/t/p/w300_and_h450_bestv2/${item.poster_path}` : "fallback-image.jpg";
   }
 
   function getImdbLink(link: string | undefined) {
@@ -63,9 +62,9 @@ const MovieItem = ({ item, onDetails, details: details }: IMovieItem) => {
       </div>
       <div className="card__overview">
         {details && (
-          <div>
+          <>
             <span>Overview:</span> {item.overview}
-          </div>
+          </>
         )}
       </div>
     </section>

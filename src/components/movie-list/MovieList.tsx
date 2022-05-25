@@ -49,7 +49,7 @@ const MovieList = forwardRef(({ waitForKey }: IMovieList, inputRef: ForwardedRef
   return (
     <>
       <span className="search-result">{`${count} Search result(s)`}</span>
-      <div id="list-content" className="list-content">
+      <div className="list-content">
         {movieListContent}
       </div>
     </>

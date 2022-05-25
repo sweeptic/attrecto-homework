@@ -16,7 +16,7 @@ interface ModalOverlay {
 const ModalOverlay = (props: ModalOverlay) => {
   return (
     <div className="modal" onClick={props.onClose}>
-      <div /*className={classes.content}*/>{props.children}</div>
+      <>{props.children}</>
     </div>
   );
 };

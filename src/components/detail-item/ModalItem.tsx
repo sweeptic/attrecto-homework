@@ -16,7 +16,7 @@ const ModalItem = ({ content, onClose }: IModalItem) => {
 
   return (
     <Modal onClose={onClose}>
-      <div>{content}</div>
+      <>{content}</>
     </Modal>
   );
 };

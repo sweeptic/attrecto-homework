@@ -7,12 +7,28 @@
   //   margin-right: 3rem;
   display: flex;
   border-radius: 0.5rem;
+//   margin: 12px;
+//   margin-left: 10px;
+//    margin-right: 10px;
   //    border: 0 auto;
   //    margin: 1rem;
   cursor: pointer;
   flex-direction: column;
   justify-content: space-between;
-  //   max-height: 20rem;
+    // min-height: 570px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+
+   @include devices(tab-port) {
+       width: 48%;
+    }
+
+     @include devices(tab-land) {
+       width: 32%;
+    }
+
+     @include devices(normal) {
+       width: 24%;
+    }
 
   &__description-container {
     //   width: 50%;
